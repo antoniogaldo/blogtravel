@@ -1,0 +1,42 @@
+{% block title %}{% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/ionicons.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/AdminLTE.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/skin-blue.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
+<link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+{% endblock %}
+{% block body %}
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <img src="{{ asset('images/logo.svg') }}"></img>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Gestione</p>
+
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <form action="{{ path('login') }}" method="post">
+      <div class="form-group has-feedback">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="_password" />
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
+    </form>
+
+  <!-- /.login-box-body -->
+</div>
+<body>
+  
+{% endblock %}

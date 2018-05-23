@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div class="col-md-6">
+    <h1>Registrati</h1>
+{{ form_start(form) }}
+<div class="form-group">
+    {{ form_row(form.username, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.Password.first, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.Password.second, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.roles, {'attr': {'class': 'form-control'}}) }}
+</div>
+    <button type="submit" class="btn btn-info">Registrati</button>
+{{ form_end(form) }}
+</div>
+{% endblock %}
