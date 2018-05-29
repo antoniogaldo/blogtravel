@@ -14,7 +14,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-        main:
             pattern: ^/
             http_basic: ~
             provider: our_db_provider
@@ -27,6 +26,7 @@ security:
 
                 oauth_user_provider:
                     service: hwi_oauth.user.provider.entity
+                
 
             form_login:
                 login_path: login
@@ -48,5 +48,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login/check-facebook, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: [ROLE_ADMIN , ROLE_USER] }

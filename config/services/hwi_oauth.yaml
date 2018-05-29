@@ -4,9 +4,13 @@ hwi_oauth:
     resource_owners:
         any_name:
             type:                facebook
-            client_id:           <client_id>
-            client_secret:       <client_secret>
+            client_id:           185122535651318
+            client_secret:       30918f609958daa3df76ac7e08020869
+            scope:               "email"
             options:
                 csrf: true
                 display: popup #dialog is optimized for popup window
                 auth_type: rerequest #
+services:
+    hwi_oauth.user.provider.entity:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
