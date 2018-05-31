@@ -62,6 +62,17 @@ class User implements UserInterface, \Serializable
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
+
+    /**
+     * Get id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
     /**
      * Set username
      *
@@ -132,6 +143,30 @@ class User implements UserInterface, \Serializable
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param string isActive
+     *
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return string
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 
     public function getSalt()

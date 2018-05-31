@@ -1,0 +1,46 @@
+{% extends 'baseadmin.html.twig' %}
+{% block title %}Admin{% endblock %}
+{% block body %}
+<h2>Lista user</h2>
+{% if app.session.flashBag.has('success') %}
+   <div class="alert alert-success alert-dismissible">
+     <a class="close" data-dismiss="alert" aria-label="close">×</a>
+     {% for msg in app.session.flashBag.get('success') %}
+     {{ msg }}
+     {% endfor %}
+   </div>
+   {% elseif app.session.flashBag.has('notsuccess') %}
+   <div class="alert alert-danger alert-dismissable">
+     <a class="close" data-dismiss="alert" aria-label="close">×</a>
+     {% for msg in app.session.flashBag.get('notsuccess') %}
+     {{ msg }}
+     {% endfor %}
+{% endif %}
+<table id="example1" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Attivo</th>
+      <th>Ruolo</th>
+      <th>Azione</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for u in user %}
+    <tr>
+      <td>{{u.id}}</td>
+      <td>{{u.username}}</td>
+      <td>{{u.email}}</td>
+      <td>{{u.isActive}}</td>
+      <td>{% for r in u.roles %}{{r}}{% endfor %}</td>
+      <td>
+        <a class="btn btn-info btn-xs" href="{{ path('edit', { id: u.id }) }}"><i class="fa fa-plus"></i>Modifica user</a>
+        <a class="btn btn-danger btn-xs" href="{{ path('delete', { id: u.id }) }}"><i class="fa fa-plus"></i>Elimina user</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

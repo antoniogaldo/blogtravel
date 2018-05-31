@@ -42,12 +42,17 @@
                       <!-- The user image in the navbar-->
 
                       <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                      <span class="hidden-xs">{{ app.user.username }}</span>
+                      <span class="hidden-xs">
+                      {% if app.user %}
+                          {{ app.user.username }}
+                      {% endif %}</span>
                     </a>
                     <ul class="dropdown-menu">
                       <!-- The user image in the menu -->
                       <li class="user-header">
-                      {{ app.user.username }}
+                        {% if app.user %}
+                            {{ app.user.username }}
+                        {% endif %}
                         <p>
 
                         </p>
@@ -120,21 +125,18 @@
               <ul class="sidebar-menu" data-widget="tree">
                 <li class="header"></li>
                 <!-- User -->
-                {% if is_granted('ROLE_ADMIN') %}
-                <li class="{{ app.request.get('_route') == 'user_registration' ? 'active' }}"><a href="#"><i class="fa fa-users"></i> <span>User</span></a></li>
-                {% endif %}
-                <li class="{{ app.request.get('_route') == 'anagrafica' ? 'active' }}"><a href="#"><i class="fa fa-address-book"></i> <span>Anagrafica</span></a></li>
+                <li class="{{ app.request.get('_route') == 'user_registration' ? 'active' }}"><a href="{{ path('user') }}"><i class="fa fa-users"></i> <span>User</span></a></li>
                 <!-- Anagrafica -->
                 <!-- Pacchetto -->
                 <li class="treeview" >
-                  <a href="#"><i class="fa fa-pencil"></i> <span>Pacchetto</span>
+                  <a href="#"><i class="fa fa-newspaper-o"></i> <span>Articoli</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                       </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#">Crea pacchetto</a></li>
-                    <li><a href="#">Crea servizio</a></li>
+                    <li><a href="#">Crea categoria</a></li>
+                    <li><a href="#">Crea articoli</a></li>
 
                   </ul>
                 </li>

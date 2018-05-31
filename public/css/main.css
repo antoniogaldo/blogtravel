@@ -2104,7 +2104,8 @@ h6
     padding-left: 30px;
 }
 body.hold-transition.login-page
-{overflow: hidden;height: 100%;
+{
+  height: 100%;
     margin: 0;
 }
 .form-signin

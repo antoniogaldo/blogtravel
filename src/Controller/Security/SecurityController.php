@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Form\Security\UserType;
+use App\Form\Security\RegisterType;
 use App\Entity\Security\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -47,7 +48,7 @@ class SecurityController extends Controller
         $users= $em->getRepository(User::class)->findAll();
         // 1) build the form
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(RegisterType::class, $user);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
@@ -72,19 +73,4 @@ class SecurityController extends Controller
             ));
     }
 
-    /**
-     * @Route("/home", name="home")
-     */
-    public function homeAction()
-    {
-     return $this->render('security/index.html.twig');
-   }
-
-   /**
-    * @Route("/dashboard", name="dashboard")
-    */
-   public function dashboardAction()
-   {
-    return $this->render('security/dashboard.html.twig');
-  }
 }
