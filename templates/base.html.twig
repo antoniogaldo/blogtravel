@@ -43,12 +43,29 @@
 							        <a class="dropdown-item" href="elements.html">Elements</a>
 							      </div>
 							    </li>
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      <i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        {{ app.user.username }}
+                        <a class="dropdown-item"><a href="{{ path('logout') }}">Disconnetti</a>
+                        {% else %}
+                        <a class="dropdown-item"><a href="{{ path('login') }}">Accedi</a>
+                      {% endif %}
+                      {% if is_granted('ROLE_ADMIN') %}<a class="dropdown-item"><a href="{{ path('dashboard') }}">Dashboard</a>
+
+                      {% endif %}
+                    </div>
+                  </li>
 						    </ul>
 						  </div>
 					</div>
 				</nav>
 			</header>
 			<!-- End Header Area -->
+      {% block body %}{% endblock %}
     <!-- start footer Area -->
 			<footer class="footer-area section-gap">
 				<div class="container">

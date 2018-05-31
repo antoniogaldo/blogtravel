@@ -32,7 +32,7 @@
         <input type="password" class="form-control" id="password" name="_password" />
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-      <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
+      <button type="submit" class="btn btn-primary btn-block btn-flat">Accedi</button>
     </form>
     <script>
       // This is called with the results from from FB.getLoginStatus().
@@ -120,7 +120,9 @@
         <span>Login with Facebook</span>
     </a>
   <!-- /.login-box-body -->
+<hr>
+<a href="{{ path('register') }}"><button type="submit" class="btn btn-primary btn-block btn-flat">Iscriviti</button><a>
 </div>
-<body>
+</body>
 
 {% endblock %}

@@ -18,7 +18,7 @@ class SecurityController extends Controller
    */
    public function entryAction(Request $request)
    {
-       return $this->redirect($this->generateUrl('login'));
+       return $this->redirect($this->generateUrl('home'));
    }
 
    /**
@@ -39,7 +39,7 @@ class SecurityController extends Controller
   }
 
     /**
-     * @Route("/register", name="user_registration")
+     * @Route("/register", name="register")
      */
     public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -62,7 +62,7 @@ class SecurityController extends Controller
             $entityManager->flush();
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
-            return $this->redirectToRoute('user_registration');
+            return $this->redirectToRoute('register');
         }
 
         return $this->render(
@@ -73,10 +73,18 @@ class SecurityController extends Controller
     }
 
     /**
-     * @Route("/dashboard", name="dashboard")
+     * @Route("/home", name="home")
      */
-    public function dashboardAction()
+    public function homeAction()
     {
      return $this->render('security/index.html.twig');
    }
+
+   /**
+    * @Route("/dashboard", name="dashboard")
+    */
+   public function dashboardAction()
+   {
+    return $this->render('security/dashboard.html.twig');
+  }
 }

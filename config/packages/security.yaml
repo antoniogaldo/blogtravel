@@ -26,13 +26,13 @@ security:
 
                 oauth_user_provider:
                     service: hwi_oauth.user.provider.entity
-                
+
 
             form_login:
                 login_path: login
                 check_path: login
                 always_use_default_target_path: true
-                default_target_path: dashboard
+                default_target_path: home
             logout:
                 path: /logout
 
@@ -50,4 +50,5 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login/check-facebook, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: [ROLE_ADMIN , ROLE_USER] }
+        - { path: ^/dashboard, roles: ROLE_ADMIN }
+        - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY  }
