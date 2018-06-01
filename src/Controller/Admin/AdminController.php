@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Form\Admin\ArticolicategoriaType;
 use App\Entity\Admin\Articolicategoria;
+use App\Form\Admin\ArticoliType;
+use App\Entity\Admin\Articoli;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminController extends Controller
@@ -198,6 +200,107 @@ class AdminController extends Controller
     return $this->render('admin/editcategoria.html.twig', [
       'form' => $form->createView(),
       'categoria' => $categoria
+
+    ]);
+  }
+
+  /**
+   * @Route("/addarticoli", name="addarticoli")
+   */
+  public function addarticoliAction(Request $request)
+  {
+      $em= $this->getDoctrine()->getManager();
+      $articoli= $em->getRepository(Articoli::class)->findAll();
+      // 1) build the form
+      $articoli = new Articoli();
+      $form = $this->createForm(ArticoliType::class, $articoli);
+
+      // 2) handle the submit (will only happen on POST)
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+          // 4) save the User!
+          $entityManager = $this->getDoctrine()->getManager();
+          $entityManager->persist($articolicategoria);
+          $entityManager->flush();
+          // ... do any other work - like sending them an email, etc
+          // maybe set a "flash" success message for the user
+          return $this->redirectToRoute('addarticoli');
+      }
+
+      return $this->render(
+          'admin/addarticoli.html.twig',array(
+            'form' => $form->createView(),
+            'articoli' => $articoli
+          ));
+  }
+
+  /**
+  * @Route("/articoli/delete/{id}", name="deletearticoli")
+  */
+  public function deletearticoliAction($id)
+  {
+    $entityManager = $this->getDoctrine()->getManager();
+    $articoli = $entityManager->getRepository(Articoli::class)->find($id);
+
+    if (!$articoli) {
+      throw $this->createNotFoundException(
+        'Articoli non trovato '.$id
+      );
+    }
+    $entityManager->remove($articoli);
+    $entityManager->flush();
+    return $this->redirectToRoute('addcategoria');
+  }
+
+  /**
+  * @Route("/articoli/edit/{id}", name="editarticoli")
+  */
+  public function editarticoliAction(Request $request,$id)
+  {
+    $entityManager = $this->getDoctrine()->getManager();
+    $articoli = $entityManager->getRepository(Articoli::class)->find($id);
+    $articoli->setNome($articoli->getNome());
+    $articoli->setData($articoli->getData());
+    $articoli->setArticolo($articoli->getArticolo());
+    $articoli->setCategoria($articoli->getCategoria());
+    if (!$articoli) {
+      throw $this->createNotFoundException(
+        'Articoli non trovato'.$id
+      );
+    }
+    $form = $this->createForm(ArticoliType::class, $articoli);
+    if ($request->isMethod('POST')) {
+      // handle the first form
+      $form->handleRequest($request);
+      // control form //
+      if($form->isSubmitted() &&  $form->isValid()){
+        $nome = $form['nome']->getData();
+        $data= $form['data']->getData();
+        $data= $form['articolo']->getData();
+        $data= $form['categoria']->getData();
+        $sn = $this->getDoctrine()->getManager();
+        $articoli = $sn->getRepository(Articoli::class)->find($id);
+        $articoli->setNome($nome);
+        $articoli->setData($data);
+        $articoli->setArticolo($data);
+        $articoli->setCategoria($data);
+        $sn -> persist($articoli);
+        $sn -> flush();
+        $request->getSession()
+        ->getFlashBag()
+        ->add('success', 'Hai modificato un articolo');
+      }
+      else {
+        // alert insucces //
+        $request->getSession()
+        ->getFlashBag()
+        ->add('notsuccess', 'Articolo gia presente');
+      }
+      return $this->redirectToRoute('addcategoria');
+    }
+    return $this->render('admin/editcategoria.html.twig', [
+      'form' => $form->createView(),
+      'articoli' => $articoli
 
     ]);
   }

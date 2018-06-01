@@ -15,11 +15,11 @@
      {{ msg }}
      {% endfor %}
 {% endif %}
-<h2>Lista Categoria</h2>
+<h2>Lista Articoli</h2>
 <h2 class="page-header"></h2>
 <div class="box box-solid">
       <div class="box-header with-border">
-        <h3 class="box-title">Gestione Categoria</h3>
+        <h3 class="box-title">Gestione Articoli</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-group" id="accordion">
@@ -27,12 +27,12 @@
         <div class="panel box box-primary">
           <div class="box-header with-border">
             <h4 class="box-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapsecategoria">
-                Aggiungi categoria
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapsearticolo">
+                Aggiungi Articolo
               </a>
             </h4>
           </div>
-          <div id="collapsecategoria" class="panel-collapse collapse">
+          <div id="collapsearticolo" class="panel-collapse collapse">
             <div class="box-body">
               {{ form_start(form) }}
               <div class="form-group">
@@ -40,6 +40,12 @@
               </div>
               <div class="form-group">
                   {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_row(form.articolo, {'attr': {'class': 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_row(form.categoria, {'attr': {'class': 'form-control'}}) }}
               </div>
                   <button type="submit" class="btn btn-info">Aggiungi</button>
               {{ form_end(form) }}
@@ -57,22 +63,29 @@
         <th>Id</th>
         <th>Nome</th>
         <th>Data</th>
+        <th>Articolo</th>
+        <th>Categoria</th>
         <th>Azione</th>
       </tr>
     </thead>
     <tbody>
-      {% for c in categoria %}
+      {% for a in articoli %}
       <tr>
-        <td>{{c.id}}</td>
-        <td>{{c.nome}}</td>
-        <td>{{c.data|date("d/m/Y")}}</td>
+        <td>{{a.id}}</td>
+        <td>{{a.nome}}</td>
+        <td>{{a.data|date("d/m/Y")}}</td>
+        <td>{{a.articolo}}</td>
+        <td>{{a.categoria}}</td>
         <td>
-          <a class="btn btn-danger btn-xs" href="{{ path('deletecategoria', { id: c.id }) }}">elimina categoria</a>
-          <a class="btn btn-info btn-xs" href="{{ path('editcategoria', { id: c.id }) }}">modifica categoria</a>
+          <a class="btn btn-danger btn-xs" href="{{ path('deletearticolo', { id: a.id }) }}">elimina articolo</a>
+          <a class="btn btn-info btn-xs" href="{{ path('editarticolo', { id: a.id }) }}">modifica articolo</a>
         </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-
+<script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace( 'articoli_articolo' );
+</script>
 {% endblock %}
