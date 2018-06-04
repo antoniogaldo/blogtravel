@@ -1,0 +1,15 @@
+{% extends 'baseadmin.html.twig' %}
+{% block title %}Admin{% endblock %}
+{% block body %}
+
+<h2>Articoli</h2>
+{{articoli.id}}<br>
+{{articoli.titolo}}<br>
+{% for a in articoli.tags %}{{a}},&nbsp;{% endfor %}<br>
+{{articoli.active}}<br>
+{{articoli.data|date("d/m/Y")}}<br>
+{{articoli.articolo|raw}}<br>
+{{articoli.autore}}<br>
+{{articoli.categoria.nome}}<br>
+<a class="btn btn-info btn-xs" href="{{ path('addarticoli') }}">indietro</a>
+{% endblock %}

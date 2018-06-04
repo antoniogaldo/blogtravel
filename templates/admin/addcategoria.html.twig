@@ -67,8 +67,9 @@
         <td>{{c.nome}}</td>
         <td>{{c.data|date("d/m/Y")}}</td>
         <td>
-          <a class="btn btn-danger btn-xs" href="{{ path('deletecategoria', { id: c.id }) }}">elimina categoria</a>
-          <a class="btn btn-info btn-xs" href="{{ path('editcategoria', { id: c.id }) }}">modifica categoria</a>
+          <a class="btn btn-info btn-xs" href="{{ path('viewcategoria', { id: c.id }) }}">vedi</a>
+          <a class="btn btn-warning btn-xs" href="{{ path('editcategoria', { id: c.id }) }}">modifica</a>
+          <a class="btn btn-danger btn-xs" href="{{ path('deletecategoria', { id: c.id }) }}">elimina</a>
         </td>
       </tr>
       {% endfor %}

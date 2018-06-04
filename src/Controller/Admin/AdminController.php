@@ -11,6 +11,7 @@ use App\Form\Admin\ArticolicategoriaType;
 use App\Entity\Admin\Articolicategoria;
 use App\Form\Admin\ArticoliType;
 use App\Entity\Admin\Articoli;
+use App\Entity\Security\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminController extends Controller
@@ -35,6 +36,19 @@ class AdminController extends Controller
       'user' => $user
 
     ]);
+  }
+
+  /**
+  * @Route("/user/view/{id}", name="view")
+  */
+  public function userviewAction(Request $request,$id)
+  {
+    $entityManager = $this->getDoctrine()->getManager();
+    $user= $entityManager->getRepository(User::class)->find($id);
+    return $this->render(
+      'admin/viewuser.html.twig',array(
+        'user' => $user
+      ));
   }
 
   /**
@@ -205,6 +219,19 @@ class AdminController extends Controller
   }
 
   /**
+  * @Route("/categoria/view/{id}", name="viewcategoria")
+  */
+  public function categoriaviewAction(Request $request,$id)
+  {
+    $entityManager = $this->getDoctrine()->getManager();
+    $categoria = $entityManager->getRepository(Articolicategoria::class)->find($id);
+    return $this->render(
+      'admin/viewcategoria.html.twig',array(
+        'categoria' => $categoria
+      ));
+  }
+
+  /**
    * @Route("/addarticoli", name="addarticoli")
    */
   public function addarticoliAction(Request $request)
@@ -312,6 +339,19 @@ class AdminController extends Controller
       'articoli' => $articoli
 
     ]);
+  }
+
+  /**
+  * @Route("/articoli/view/{id}", name="viewarticoli")
+  */
+  public function articoliviewAction(Request $request,$id)
+  {
+    $entityManager = $this->getDoctrine()->getManager();
+    $articoli = $entityManager->getRepository(Articoli::class)->find($id);
+    return $this->render(
+      'admin/viewarticoli.html.twig',array(
+        'articoli' => $articoli
+      ));
   }
 
 }

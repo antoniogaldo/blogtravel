@@ -92,8 +92,9 @@
         <td>{{a.autore}}</td>
         <td>{{a.categoria.nome}}</td>
         <td>
+          <a class="btn btn-info btn-xs" href="{{ path('viewarticoli', { id: a.id }) }}">vedi</a>
+          <a class="btn btn-warning btn-xs" href="{{ path('editarticoli', { id: a.id }) }}">modifica</a>
           <a class="btn btn-danger btn-xs" href="{{ path('deletearticoli', { id: a.id }) }}">elimina</a>
-          <a class="btn btn-info btn-xs" href="{{ path('editarticoli', { id: a.id }) }}">modifica</a>
         </td>
       </tr>
       {% endfor %}

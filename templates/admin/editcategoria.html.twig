@@ -1,7 +1,6 @@
 {% extends 'baseadmin.html.twig' %}
 {% block title %}Admin{% endblock %}
 {% block body %}
-<h2>Lista user</h2>
 <h2 class="page-header">Modifica Categoria</h2>
 {{ form_start(form) }}
 <div class="form-group">
@@ -10,6 +9,7 @@
 <div class="form-group">
     {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
 </div>
-    <button type="submit" class="btn btn-info">Modifica</button>
+    <button type="submit" class="btn btn-warning">Modifica</button>
 {{ form_end(form) }}
+<a class="btn btn-info btn-xs" href="{{ path('addcategoria') }}">indietro</a>
 {% endblock %}

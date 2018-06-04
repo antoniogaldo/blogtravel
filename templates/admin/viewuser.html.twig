@@ -1,0 +1,12 @@
+{% extends 'baseadmin.html.twig' %}
+{% block title %}Admin{% endblock %}
+{% block body %}
+
+<h2>User</h2>
+{{user.id}}<br>
+{{user.username}}<br>
+{{user.email}}<br>
+{{user.isActive}}<br>
+{% for u in user.roles %}{{u}}{% endfor %}<br>
+<a class="btn btn-info btn-xs" href="{{ path('user') }}">indietro</a>
+{% endblock %}

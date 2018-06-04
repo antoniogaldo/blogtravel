@@ -36,8 +36,9 @@
       <td>{{u.isActive}}</td>
       <td>{% for r in u.roles %}{{r}}{% endfor %}</td>
       <td>
-        <a class="btn btn-info btn-xs" href="{{ path('edit', { id: u.id }) }}"><i class="fa fa-plus"></i>Modifica user</a>
-        <a class="btn btn-danger btn-xs" href="{{ path('delete', { id: u.id }) }}"><i class="fa fa-plus"></i>Elimina user</a>
+        <a class="btn btn-info btn-xs" href="{{ path('view', { id: u.id }) }}">vedi</a>
+        <a class="btn btn-warning btn-xs" href="{{ path('edit', { id: u.id }) }}">modifica</a>
+        <a class="btn btn-danger btn-xs" href="{{ path('delete', { id: u.id }) }}"></i>elimina</a>
       </td>
     </tr>
     {% endfor %}

@@ -1,0 +1,10 @@
+{% extends 'baseadmin.html.twig' %}
+{% block title %}Admin{% endblock %}
+{% block body %}
+
+<h2>Categoria</h2>
+{{categoria.id}}<br>
+{{categoria.nome}}<br>
+{{categoria.data|date("d/m/Y")}}<br>
+<a class="btn btn-info btn-xs" href="{{ path('addcategoria') }}">indietro</a>
+{% endblock %}
