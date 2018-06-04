@@ -36,13 +36,22 @@
             <div class="box-body">
               {{ form_start(form) }}
               <div class="form-group">
-                  {{ form_row(form.nome, {'attr': {'class': 'form-control'}}) }}
+                  {{ form_row(form.active, {'attr': {'class': 'form-control active'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_row(form.titolo, {'attr': {'class': 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_row(form.tags, {'attr': {'class': 'form-control js-example-basic-multiple'}}) }}
               </div>
               <div class="form-group">
                   {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
               </div>
               <div class="form-group">
                   {{ form_row(form.articolo, {'attr': {'class': 'form-control'}}) }}
+              </div>
+              <div class="form-group">
+                  {{ form_row(form.autore, {'attr': {'class': 'form-control'}}) }}
               </div>
               <div class="form-group">
                   {{ form_row(form.categoria, {'attr': {'class': 'form-control'}}) }}
@@ -61,31 +70,43 @@
     <thead>
       <tr>
         <th>Id</th>
-        <th>Nome</th>
+        <th>Attivo</th>
+        <th>Titolo</th>
+        <th>Tags</th>
         <th>Data</th>
         <th>Articolo</th>
+        <th>Autore</th>
         <th>Categoria</th>
         <th>Azione</th>
       </tr>
     </thead>
     <tbody>
-      {% for a in articoli %}
+      {% for a in articoliwrite %}
       <tr>
         <td>{{a.id}}</td>
-        <td>{{a.nome}}</td>
+        <td>{% if a.active == 0 %}{{'attivo'}}{% else %}{{'non attivo'}}{% endif %}</td>
+        <td>{{a.titolo}}</td>
+        <td>{% for t in a.tags %}{{t}},&nbsp;{% endfor %}</td>
         <td>{{a.data|date("d/m/Y")}}</td>
-        <td>{{a.articolo}}</td>
-        <td>{{a.categoria}}</td>
+        <td>{{a.articolo|slice(0, 50)|raw}}</td>
+        <td>{{a.autore}}</td>
+        <td>{{a.categoria.nome}}</td>
         <td>
-          <a class="btn btn-danger btn-xs" href="{{ path('deletearticolo', { id: a.id }) }}">elimina articolo</a>
-          <a class="btn btn-info btn-xs" href="{{ path('editarticolo', { id: a.id }) }}">modifica articolo</a>
+          <a class="btn btn-danger btn-xs" href="{{ path('deletearticoli', { id: a.id }) }}">elimina</a>
+          <a class="btn btn-info btn-xs" href="{{ path('editarticoli', { id: a.id }) }}">modifica</a>
         </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-<script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
 <script>
   CKEDITOR.replace( 'articoli_articolo' );
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
 </script>
 {% endblock %}

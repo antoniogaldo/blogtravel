@@ -22,7 +22,21 @@ class Articoli
     /**
      * @ORM\Column(type="string", length=25)
      */
-    private $nome;
+    private $titolo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tags", type="array", nullable=true)
+     */
+    private $tags;
+
+    /**
+      * @var boolean
+      *
+      * @ORM\Column(name="active", type="boolean")
+      */
+     private $active;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -35,10 +49,23 @@ class Articoli
     private $articolo;
 
     /**
+     * @ORM\Column(type="string", length=25, nullable=true)
+     */
+    private $autore;
+
+    /**
     * @ORM\ManyToOne(targetEntity="Articolicategoria", inversedBy="articolicategoria")
     * @ORM\JoinColumn(name="articolicategoriai_id", referencedColumnName="id", onDelete="SET NULL")
     */
     private $categoria;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     public function getId()
@@ -47,27 +74,99 @@ class Articoli
     }
 
     /**
-     * Set nome
+     * Set titolo
      *
-     * @param string nome
+     * @param string titolo
      *
      * @return Articoli
      */
-    public function setNome($nome)
+    public function setTitolo($titolo)
     {
-        $this->nome = $nome;
+        $this->titolo = $titolo;
 
         return $this;
     }
 
     /**
-     * Get nome
+     * Get titolo
      *
      * @return string
      */
-    public function getNome()
+    public function getTitolo()
     {
-        return $this->nome;
+        return $this->titolo;
+    }
+
+    /**
+     * Set autore
+     *
+     * @param string autore
+     *
+     * @return Articoli
+     */
+    public function setAutore($autore)
+    {
+        $this->autore = $autore;
+
+        return $this;
+    }
+
+    /**
+     * Get autore
+     *
+     * @return string
+     */
+    public function getAutore()
+    {
+        return $this->autore;
+    }
+
+    /**
+     * Set tags
+     *
+     * @param array $tags
+     *
+     * @return Articoli
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return array
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return MareInternal
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 
     /**

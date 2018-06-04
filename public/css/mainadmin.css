@@ -1,0 +1,24 @@
+span.select2.select2-container.select2-container--default {
+    width: 100%!important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: #fff!important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #000000!important;
+}
+select#articoli_active{
+  width: 10%;
+}
+input#articoli_titolo {
+  width: 40%;
+}
+input#articoli_data{
+  width: 20%;
+}
+input#articoli_autore {
+  width: 40%;
+}
+select#articoli_categoria {
+  width: 40%;
+}

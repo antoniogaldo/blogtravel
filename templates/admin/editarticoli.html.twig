@@ -1,0 +1,40 @@
+{% extends 'baseadmin.html.twig' %}
+{% block title %}Admin{% endblock %}
+{% block body %}
+<h2>Lista user</h2>
+<h2 class="page-header">Modifica Articolo</h2>
+{{ form_start(form) }}
+<div class="form-group">
+    {{ form_row(form.active, {'attr': {'class': 'form-control active'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.titolo, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.tags, {'attr': {'class': 'form-control js-example-basic-multiple'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.articolo, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.autore, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.categoria, {'attr': {'class': 'form-control'}}) }}
+</div>
+    <button type="submit" class="btn btn-info">Modifica</button>
+{{ form_end(form) }}
+<script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace( 'articoli_articolo' );
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
+{% endblock %}

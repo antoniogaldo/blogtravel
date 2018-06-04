@@ -10,19 +10,44 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ArticoliType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nome', TextType::class)
+            ->add('titolo', TextType::class)
+            ->add('tags', ChoiceType::class, array(
+                  'multiple'=> true,
+                  'label' => 'tags',
+                  'choices' => array(
+                    'gennaio' =>'gennaio',
+                    'febbraio' =>'febbraio',
+                    'marzo' =>'marzo',
+                    'aprile' =>'aprile',
+                    'maggio' =>'maggio',
+                    'giugno' =>'giugno',
+                    'luglio' =>'luglio',
+                    'agosto' =>'agosto',
+                    'settembre' =>'settembre',
+                    'ottobre' =>'ottobre',
+                    'novembre' =>'novembre',
+                    'dicembre' =>'dicembre',
+            )))
             ->add('data', DateType::class, array(
               'widget' => 'single_text',
               'format' => 'yyyy-MM-dd',))
+            ->add('active', ChoiceType::class, array(
+                  'label' => 'active',
+                  'choices' => array(
+                    'attivo' =>'0',
+                    'non attivo' =>'1',
+            )))
             ->add('articolo', TextareaType::class, array(
               'attr' => array('cols' => '5', 'rows' => '5'),
             ))
+            ->add('autore', TextType::class)
             ->add('categoria', EntityType::class, array(
                  'class' => Articolicategoria::class,
                  'choice_label' => 'nome',

@@ -10,7 +10,20 @@
         <link href="{{ asset('css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/AdminLTE.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/skin-blue.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/mainadmin.css') }}" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        {% endblock %}
+        {% block javascripts %}
+        <!-- admin -->
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+        <script src="{{ asset('js/fastclick.js') }}"></script>
+        <script src="{{ asset('js/demo.js') }}"></script>
+        <script src="{{ asset('js/adminlte.min.js') }}"></script>
         {% endblock %}
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
@@ -158,20 +171,9 @@
           </div>
         </div>
         </body>
-        {% block javascripts %}
-        <!-- admin -->
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
-        <script src="{{ asset('js/fastclick.js') }}"></script>
-        <script src="{{ asset('js/demo.js') }}"></script>
-        <script src="{{ asset('js/adminlte.min.js') }}"></script>
-        {% endblock %}
         <script>
-  $(function () {
-    $('#example1').DataTable()
-  })
-</script>
+        $(function () {
+          $('#example1').DataTable()
+        })
+      </script>
 </html>

@@ -210,7 +210,7 @@ class AdminController extends Controller
   public function addarticoliAction(Request $request)
   {
       $em= $this->getDoctrine()->getManager();
-      $articoli= $em->getRepository(Articoli::class)->findAll();
+      $articoliwrite= $em->getRepository(Articoli::class)->findAll();
       // 1) build the form
       $articoli = new Articoli();
       $form = $this->createForm(ArticoliType::class, $articoli);
@@ -220,7 +220,7 @@ class AdminController extends Controller
       if ($form->isSubmitted() && $form->isValid()) {
           // 4) save the User!
           $entityManager = $this->getDoctrine()->getManager();
-          $entityManager->persist($articolicategoria);
+          $entityManager->persist($articoli);
           $entityManager->flush();
           // ... do any other work - like sending them an email, etc
           // maybe set a "flash" success message for the user
@@ -230,7 +230,7 @@ class AdminController extends Controller
       return $this->render(
           'admin/addarticoli.html.twig',array(
             'form' => $form->createView(),
-            'articoli' => $articoli
+            'articoliwrite' => $articoliwrite
           ));
   }
 
@@ -259,9 +259,12 @@ class AdminController extends Controller
   {
     $entityManager = $this->getDoctrine()->getManager();
     $articoli = $entityManager->getRepository(Articoli::class)->find($id);
-    $articoli->setNome($articoli->getNome());
+    $articoli->setActive($articoli->getActive());
+    $articoli->setTitolo($articoli->getTitolo());
     $articoli->setData($articoli->getData());
+    $articoli->setTags($articoli->getTags());
     $articoli->setArticolo($articoli->getArticolo());
+    $articoli->setAutore($articoli->getAutore());
     $articoli->setCategoria($articoli->getCategoria());
     if (!$articoli) {
       throw $this->createNotFoundException(
@@ -274,16 +277,22 @@ class AdminController extends Controller
       $form->handleRequest($request);
       // control form //
       if($form->isSubmitted() &&  $form->isValid()){
-        $nome = $form['nome']->getData();
+        $active = $form['active']->getData();
+        $titolo = $form['titolo']->getData();
         $data= $form['data']->getData();
-        $data= $form['articolo']->getData();
-        $data= $form['categoria']->getData();
+        $articolo= $form['articolo']->getData();
+        $tags= $form['tags']->getData();
+        $autore = $form['autore']->getData();
+        $categoria= $form['categoria']->getData();
         $sn = $this->getDoctrine()->getManager();
         $articoli = $sn->getRepository(Articoli::class)->find($id);
-        $articoli->setNome($nome);
+        $articoli->setActive($active);
+        $articoli->setTitolo($titolo);
         $articoli->setData($data);
-        $articoli->setArticolo($data);
-        $articoli->setCategoria($data);
+        $articoli->setTags($tags);
+        $articoli->setArticolo($articolo);
+        $articoli->setAutore($autore);
+        $articoli->setCategoria($categoria);
         $sn -> persist($articoli);
         $sn -> flush();
         $request->getSession()
@@ -296,9 +305,9 @@ class AdminController extends Controller
         ->getFlashBag()
         ->add('notsuccess', 'Articolo gia presente');
       }
-      return $this->redirectToRoute('addcategoria');
+      return $this->redirectToRoute('addarticoli');
     }
-    return $this->render('admin/editcategoria.html.twig', [
+    return $this->render('admin/editarticoli.html.twig', [
       'form' => $form->createView(),
       'articoli' => $articoli
 
