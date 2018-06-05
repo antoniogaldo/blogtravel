@@ -11,5 +11,6 @@
 {{articoli.articolo|raw}}<br>
 {{articoli.autore}}<br>
 {{articoli.categoria.nome}}<br>
+<a href="{{ asset('uploads/image/' ~ articoli.image) }}">View brochure (PDF)</a>
 <a class="btn btn-info btn-xs" href="{{ path('addarticoli') }}">indietro</a>
 {% endblock %}

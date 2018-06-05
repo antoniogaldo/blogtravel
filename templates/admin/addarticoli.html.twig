@@ -48,6 +48,9 @@
                   {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
               </div>
               <div class="form-group">
+                  {{ form_row(form.image, {'attr': {'class': 'form-control'}}) }}
+              </div>
+              <div class="form-group">
                   {{ form_row(form.articolo, {'attr': {'class': 'form-control'}}) }}
               </div>
               <div class="form-group">
@@ -74,7 +77,6 @@
         <th>Titolo</th>
         <th>Tags</th>
         <th>Data</th>
-        <th>Articolo</th>
         <th>Autore</th>
         <th>Categoria</th>
         <th>Azione</th>
@@ -88,7 +90,6 @@
         <td>{{a.titolo}}</td>
         <td>{% for t in a.tags %}{{t}},&nbsp;{% endfor %}</td>
         <td>{{a.data|date("d/m/Y")}}</td>
-        <td>{{a.articolo|slice(0, 50)|raw}}</td>
         <td>{{a.autore}}</td>
         <td>{{a.categoria.nome}}</td>
         <td>

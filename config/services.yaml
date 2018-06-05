@@ -4,6 +4,7 @@ imports:
     - { resource: services/hwi_oauth.yaml }
 parameters:
     locale: 'it'
+    image_directory: '%kernel.project_dir%/public/uploads/image'
 services:
 
     # default configuration for services in *this* file

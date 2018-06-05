@@ -9,6 +9,7 @@ use App\Entity\Admin\Articolicategoria;
 /**
  * @ORM\Table(name="articoli__articoli")
  * @ORM\Entity(repositoryClass="App\Repository\Admin\ArticoliRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Articoli
 {
@@ -42,6 +43,11 @@ class Articoli
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $data;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     /**
      * @ORM\Column(type="string", length=4000)
@@ -119,6 +125,30 @@ class Articoli
     public function getAutore()
     {
         return $this->autore;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string image
+     *
+     * @return Articoli
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -239,6 +269,19 @@ class Articoli
     public function getCategoria()
     {
     return $this->categoria;
+    }
+
+    /**
+     * @ORM\PreRemove
+     */
+    public function removeUpload()
+    {
+      $image = $this->getImage();
+        if(file_exists($image)) {
+            if ($image = $this->getAbsolutePath()) {
+                unlink($image);
+            }
+        }
     }
 
 }
