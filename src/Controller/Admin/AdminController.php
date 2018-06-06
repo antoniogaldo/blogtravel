@@ -290,7 +290,9 @@ class AdminController extends Controller
         'Articoli non trovato '.$id
       );
     }
-    //$image=($this->getParameter('image_directory').'/'.$articoli->getImage());
+    if(file_exists ($image=($this->getParameter('image_directory').'/'.$articoli->getImage()))){
+      unlink($image);
+    }
     $entityManager->remove($articoli);
     $entityManager->flush();
     return $this->redirectToRoute('addarticoli');

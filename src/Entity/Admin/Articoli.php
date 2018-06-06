@@ -9,7 +9,6 @@ use App\Entity\Admin\Articolicategoria;
 /**
  * @ORM\Table(name="articoli__articoli")
  * @ORM\Entity(repositoryClass="App\Repository\Admin\ArticoliRepository")
- * @ORM\HasLifecycleCallbacks
  */
 class Articoli
 {
@@ -269,19 +268,6 @@ class Articoli
     public function getCategoria()
     {
     return $this->categoria;
-    }
-
-    /**
-     * @ORM\PreRemove
-     */
-    public function removeUpload()
-    {
-      $image = $this->getImage();
-        if(file_exists($image)) {
-            if ($image = $this->getAbsolutePath()) {
-                unlink($image);
-            }
-        }
     }
 
 }
