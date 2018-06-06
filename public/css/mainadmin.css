@@ -7,18 +7,12 @@ span.select2.select2-container.select2-container--default {
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: #000000!important;
 }
-select#articoli_active{
+select#articoli_active, select#user_isActive{
   width: 10%;
 }
-input#articoli_titolo {
-  width: 40%;
-}
-input#articoli_data{
+input#articoli_data, input#user_data, input#articolicategoria_data {
   width: 20%;
 }
-input#articoli_autore {
-  width: 40%;
-}
-select#articoli_categoria {
+input#articoli_autore, span.select2-selection.select2-selection--multiple, select#articoli_categoria, select#user_roles, input#articoli_titolo, input#user_username, input#user_email, input#articolicategoria_nome  {
   width: 40%;
 }
