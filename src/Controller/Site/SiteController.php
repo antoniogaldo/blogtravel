@@ -30,4 +30,30 @@ class SiteController extends Controller
      'news' => $news
    ));
  }
+
+ /**
+ * @Route("/categoria/{id}", name="categoriasite")
+ */
+ public function categoriasiteAction(Request $request,$id)
+ {
+   $entityManager = $this->getDoctrine()->getManager();
+   $categoria = $entityManager->getRepository(Articolicategoria::class)->find($id);
+   return $this->render(
+     'site/categoriasite.html.twig',array(
+       'categoria' => $categoria,
+     ));
+ }
+
+ /**
+ * @Route("/categoria/articoli/{id}", name="articolisite")
+ */
+ public function articolisiteAction(Request $request,$id)
+ {
+   $entityManager = $this->getDoctrine()->getManager();
+   $articoli = $entityManager->getRepository(Articoli::class)->find($id);
+   return $this->render(
+     'site/articolisite.html.twig',array(
+       'articoli' => $articoli,
+     ));
+ }
 }

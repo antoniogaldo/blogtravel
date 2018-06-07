@@ -1133,7 +1133,7 @@ h6
 .tag_widget ul li a:hover,
 .top-section-area
 {
-    background-image:    -moz-linear-gradient(45deg, #62bdfc 0%, #8490ff 100%)                ;background-image: -webkit-linear-gradient(45deg, #62bdfc 0%, #8490ff 100%);background-image:     -ms-linear-gradient(45deg, #62bdfc 0%, #8490ff 100%);
+    background-image:    -moz-linear-gradient(45deg, #0eb2d3 0%, #1e3d6e 100%)                ;background-image: -webkit-linear-gradient(45deg, #0eb2d3 0%, #1e3d6e 100%);background-image:     -ms-linear-gradient(45deg, #0eb2d3 0%, #1e3d6e 100%);
 }.p1-gradient-color,
 .single-travel h4:hover,
 .single-fashion h4:hover,
@@ -1141,7 +1141,7 @@ h6
 .single-posts:hover h4,
 .single-list:hover h4
 {
-    background-image:    -moz-linear-gradient(45deg, #62bdfc 0%, #8490ff 100%)                                ;background-image: -webkit-linear-gradient(45deg, #62bdfc 0%, #8490ff 100%);background-image:     -ms-linear-gradient(45deg, #62bdfc 0%, #8490ff 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;
+    background-image:    -moz-linear-gradient(45deg, #0eb2d3 0%, #1e3d6e 100%)                                ;background-image: -webkit-linear-gradient(45deg, #0eb2d3 0%, #1e3d6e 100%);background-image:     -ms-linear-gradient(45deg, #0eb2d3 0%, #1e3d6e 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;
 }.primary-btn
 {font-weight: 500;
     line-height: 42px;position: relative;position: relative;display: inline-block;padding-right: 60px;padding-left: 30px;cursor: pointer;-webkit-transition: all .3s ease 0s;-moz-transition: all .3s ease 0s;-o-transition: all .3s ease 0s;transition: all .3s ease 0s;text-transform: uppercase;color: #fff;border: none;border-radius: 25px;
@@ -2155,4 +2155,10 @@ table.dataTable thead th.sorting_desc:after
 }
 span.select2.select2-container.select2-container--default {
     width: 100%!important;
+}
+.brand{
+  width: 180px;
+}
+.title{
+  color: white;
 }

@@ -11,12 +11,12 @@
 {% block body %}
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-    <img src="{{ asset('images/logo.svg') }}"></img>
-  </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Gestione</p>
+    <div class="login-logo">
+      <img class="brand" src="{{ asset('images/Logo1.svg') }}"></img>
+    </div>
+    <p class="login-box-msg">Accedi</p>
 
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -34,7 +34,10 @@
       </div>
       <button type="submit" class="btn btn-primary btn-block btn-flat">Accedi</button>
     </form>
-    <script>
+    <hr>
+    <p class="login-box-msg">Se non sei iscritto</p>
+    <a href="{{ path('register') }}"><button type="submit" class="btn btn-primary btn-block btn-flat">Iscriviti</button><a>
+    <!--<script>
       // This is called with the results from from FB.getLoginStatus().
       function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -110,19 +113,15 @@
       }
     </script>
 
-    <!--
-      Below we include the Login Button social plugin. This button uses
-      the JavaScript SDK to present a graphical Login button that triggers
-      the FB.login() function when clicked.
-    -->
+
 
     <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}">
         <span>Login with Facebook</span>
     </a>
-  <!-- /.login-box-body -->
+
 <hr>
 <a href="{{ path('register') }}"><button type="submit" class="btn btn-primary btn-block btn-flat">Iscriviti</button><a>
-</div>
+</div>-->
 </body>
 
 {% endblock %}
