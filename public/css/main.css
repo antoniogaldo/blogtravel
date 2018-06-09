@@ -1325,7 +1325,7 @@ h6
 {
     transform: scale(1.1);
 }.single-cat .date
-{font-weight: 100;width: 115px;margin-top: 20px;padding: 2px 15px;text-align: center;color: #fff;
+{font-weight: 100;width: 150px;margin-top: 20px;padding: 2px 15px;text-align: center;color: #fff;
     background-color: #000;
 }.single-cat a
 {
@@ -2161,4 +2161,10 @@ span.select2.select2-container.select2-container--default {
 }
 .title{
   color: white;
+}
+p {
+    color: black;
+}
+.hidden{
+  display: none;
 }

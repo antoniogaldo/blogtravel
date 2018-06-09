@@ -24,10 +24,12 @@ class SiteController extends Controller
   {
    $entityManager = $this->getDoctrine()->getManager();
    $home = $entityManager->getRepository(Articoli::class)->findFirst();
-   $news = $entityManager->getRepository(Articoli::class)->findNews();
+   $news = $entityManager->getRepository(Articoli::class)->findAll();
+   $categoria = $entityManager->getRepository(Articolicategoria::class)->findAll();
    return $this->render('site/index.html.twig',array(
      'home' => $home,
-     'news' => $news
+     'news' => $news,
+     'categoria' => $categoria
    ));
  }
 

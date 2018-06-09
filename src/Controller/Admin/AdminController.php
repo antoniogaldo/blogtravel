@@ -12,6 +12,7 @@ use App\Entity\Admin\Articolicategoria;
 use App\Form\Admin\ArticoliType;
 use App\Entity\Admin\Articoli;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 class AdminController extends Controller
 {
@@ -38,6 +39,13 @@ class AdminController extends Controller
       // 2) handle the submit (will only happen on POST)
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid()) {
+        $image = $articolicategoria->getImage();
+        $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
+        // moves the file to the directory where brochures are stored
+        $image->move($this->getParameter('image_directory'),$imagename);
+        // updates the 'brochure' property to store the PDF file name
+        // instead of its contents
+        $articolicategoria->setImage($imagename);
           // 4) save the User!
           $entityManager = $this->getDoctrine()->getManager();
           $entityManager->persist($articolicategoria);
@@ -78,6 +86,9 @@ class AdminController extends Controller
         'Categoria non trovato '.$id
       );
     }
+    if(file_exists ($image=($this->getParameter('image_directory').'/'.$categoria->getImage()))){
+      unlink($image);
+    }
     $entityManager->remove($categoria);
     $entityManager->flush();
     return $this->redirectToRoute('addcategoria');
@@ -92,6 +103,9 @@ class AdminController extends Controller
     $categoria = $entityManager->getRepository(Articolicategoria::class)->find($id);
     $categoria->setNome($categoria->getNome());
     $categoria->setData($categoria->getData());
+    $categoria->setActive($categoria->getActive());
+    $image = new File($this->getParameter('image_directory').'/'.$categoria->getImage());
+    $categoria->setImage($image);
     if (!$categoria) {
       throw $this->createNotFoundException(
         'User non trovato'.$id
@@ -105,10 +119,16 @@ class AdminController extends Controller
       if($form->isSubmitted() &&  $form->isValid()){
         $nome = $form['nome']->getData();
         $data= $form['data']->getData();
+        $active = $form['active']->getData();
+        $image = $form['image']->getData();
+        $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
+        $image->move($this->getParameter('image_directory'),$imagename);
         $sn = $this->getDoctrine()->getManager();
         $categoria = $sn->getRepository(Articolicategoria::class)->find($id);
         $categoria->setNome($nome);
         $categoria->setData($data);
+        $categoria->setActive($active);
+        $categoria->setImage($imagename);
         $sn -> persist($categoria);
         $sn -> flush();
         $request->getSession()
@@ -210,7 +230,8 @@ class AdminController extends Controller
     $articoli->setActive($articoli->getActive());
     $articoli->setTitolo($articoli->getTitolo());
     $articoli->setData($articoli->getData());
-    $articoli->setImage($articoli->getImage());
+    $image = new File($this->getParameter('image_directory').'/'.$articoli->getImage());
+    $articoli->setImage($image);
     $articoli->setTags($articoli->getTags());
     $articoli->setArticolo($articoli->getArticolo());
     $articoli->setAutore($articoli->getAutore());

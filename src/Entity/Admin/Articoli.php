@@ -179,7 +179,7 @@ class Articoli
      *
      * @param boolean $active
      *
-     * @return MareInternal
+     * @return Articoli
      */
     public function setActive($active)
     {

@@ -31,6 +31,18 @@ class Articolicategoria
     private $data;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="active", type="boolean")
+    */
+    private $active;
+
+    /**
     * @ORM\OneToMany(targetEntity="Articoli", mappedBy="categoria", cascade={"persist", "remove"})
     */
     private $articolicategoria;
@@ -113,6 +125,54 @@ class Articolicategoria
     public function getArticolicategoria()
     {
     return $this->articolicategoria;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string image
+     *
+     * @return Articolicategoria
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Articolicategoria
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 
 

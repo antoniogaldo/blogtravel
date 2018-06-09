@@ -16,8 +16,7 @@ class ArticoliRepository extends \Doctrine\ORM\EntityRepository
     }
   public function findNews(){
     $qb = $this->createQueryBuilder('a');
-    $qb->setMaxResults( 4 );
-    $qb->orderBy('a.id', 'DESC');
+
   }
 
 }

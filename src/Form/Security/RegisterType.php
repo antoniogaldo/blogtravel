@@ -24,8 +24,11 @@ class RegisterType extends AbstractType
                 'second_options' => array('label' => 'Repeat Password'),
             ))
             ->add('email', EmailType::class)
-            ->add('roles', HiddenType::class, array(
-              'data' => 'ROLE_USER',
+            ->add('roles', ChoiceType::class, array(
+              'multiple' => true,
+               'choices' => array(
+                 'ROLE USER'  => 'ROLE_USER' ),
+               'data' => array('ROLE_USER'),
             ));
     }
 
