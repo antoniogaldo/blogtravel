@@ -20,7 +20,7 @@ class Articoli
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25)
+     * @ORM\Column(type="string", length=64)
      */
     private $titolo;
 
@@ -49,7 +49,7 @@ class Articoli
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=4000)
+     * @ORM\Column(type="string", length=10000)
      */
     private $articolo;
 

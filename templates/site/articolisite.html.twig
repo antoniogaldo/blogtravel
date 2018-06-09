@@ -6,7 +6,7 @@
 							 <div class="container">
 									 <div class="row justify-content-between align-items-center d-flex">
 											 <div class="col-lg-8 top-left">
-													 <h1 class="text-white mb-20">Post Details</h1>
+													 <h1 class="text-white mb-20">{{articoli.titolo|capitalize}}</h1>
 													 <ul>
 															 <li><a href="index.html">Home</a><span class="lnr lnr-arrow-right"></span></li>
 															 <li><a href="{{ path('categoriasite', { id: articoli.categoria.id }) }}">{{articoli.categoria.nome|capitalize}}</a><span class="lnr lnr-arrow-right"></span></li>
@@ -18,7 +18,7 @@
 					 </section>
 					 <!-- End top-section Area -->
 <!-- Start post Area -->
-    <div class="post-wrapper pt-100">
+    <div class="post-wrapper pt-80">
         <!-- Start post Area -->
         <section class="post-area">
             <div class="container">
@@ -33,7 +33,7 @@
                                     </h2>
                                     <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
                                         <div class="desc">
-                                           <h2>{{articoli.autore|capitalize}}</h2>
+                                           <h2>{{articoli.autore|upper}}</h2>
                                             <h3>{{articoli.data|date("j F Y")}}</h3>
                                         </div>
                                         <div class="user-img">
@@ -50,22 +50,7 @@
                                 </ul>
                             </div>
                             <div class="single-post-content">
-                                <p>
-                                    MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training.
-                                </p>
-                                <p>
-                                    MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually sit through a self-imposed MCSE training.
-                                </p>
-
-                                <blockquote>Ea possunt paria non esse. Pudebit te, inquam, illius tabulae, quam Cleanthes sane commode verbis depingere solebat. Urgent tamen et nihil remittunt. An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia? Sint ista Graecorum; Cur igitur, cum de re conveniat, non malumus usitate loqui? Huius ego nunc auctoritatem sequens idem faciam.
-                                <cite>Wise Man</cite></blockquote>
-
-                                <p>
-                                    MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training.
-                                </p>
-                                <p>
-                                    MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually sit through a self-imposed MCSE training.
-                                </p>
+                                {{articoli.articolo|raw}}
                             </div>
                             <div class="bottom-wrapper">
                                 <div class="row">
