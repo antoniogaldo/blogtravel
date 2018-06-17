@@ -120,9 +120,10 @@ class AdminController extends Controller
         $nome = $form['nome']->getData();
         $data= $form['data']->getData();
         $active = $form['active']->getData();
-        $image = $form['image']->getData();
-        $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
-        $image->move($this->getParameter('image_directory'),$imagename);
+        if(!empty($image)) {
+          $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
+          $image->move($this->getParameter('image_directory'),$imagename);
+       }
         $sn = $this->getDoctrine()->getManager();
         $categoria = $sn->getRepository(Articolicategoria::class)->find($id);
         $categoria->setNome($nome);
@@ -251,10 +252,10 @@ class AdminController extends Controller
         // instead of its contents
         $active = $form['active']->getData();
         $titolo = $form['titolo']->getData();
-        $image = $form['image']->getData();
-        $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
-        // moves the file to the directory where brochures are stored
-        $image->move($this->getParameter('image_directory'),$imagename);
+        if(!empty($image)) {
+          $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
+          $image->move($this->getParameter('image_directory'),$imagename);
+       }
         $data= $form['data']->getData();
         $articolo= $form['articolo']->getData();
         $tags= $form['tags']->getData();

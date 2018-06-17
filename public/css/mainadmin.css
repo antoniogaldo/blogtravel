@@ -16,3 +16,6 @@ input#articoli_data, input#user_data, input#articolicategoria_data {
 input#articoli_autore, span.select2-selection.select2-selection--multiple, select#articoli_categoria, select#user_roles, input#articoli_titolo, input#user_username, input#user_email, input#articolicategoria_nome  {
   width: 40%;
 }
+.preimage{
+      width: 20%;
+}

@@ -41,7 +41,10 @@ class ArticoliType extends AbstractType
                     'attivo' =>'0',
                     'non attivo' =>'1',
             )))
-            ->add('image', FileType::class, array('label' => 'Immagine','data_class' => null))
+            ->add('image', FileType::class, array(
+              'required' => false,
+              'label' => 'Immagine',
+              'data_class' => null))
             ->add('articolo', TextareaType::class, array(
               'attr' => array('cols' => '5', 'rows' => '5'),
             ))

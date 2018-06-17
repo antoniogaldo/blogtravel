@@ -13,7 +13,12 @@
     {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
+  {% if categoria.image == true %}
+    {{ form_row(form.image, {'attr': {'class': 'hidden'}}) }}
+    <img src="{{ asset('uploads/image/' ~ categoria.image.filename) }}">
+  {% else %}
     {{ form_row(form.image) }}
+  {% endif %}
 </div>
     <button type="submit" class="btn btn-warning">Modifica</button>
 {{ form_end(form) }}
