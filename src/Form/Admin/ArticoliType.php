@@ -42,7 +42,7 @@ class ArticoliType extends AbstractType
                     'non attivo' =>'1',
             )))
             ->add('image', FileType::class, array(
-              'required' => false,
+              'required' => true,
               'label' => 'Immagine',
               'data_class' => null))
             ->add('articolo', TextareaType::class, array(

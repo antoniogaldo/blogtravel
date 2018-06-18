@@ -1,0 +1,12 @@
+{% extends 'baseadmin.html.twig' %}
+{% block title %}Admin{% endblock %}
+{% block body %}
+
+<h2>Pubblicita</h2>
+{{pubblicita.id}}<br>
+{{pubblicita.compagnia}}<br>
+{% for p in pubblicita.posizione %}{{p}},&nbsp;{% endfor %}<br>
+{{pubblicita.active}}<br>
+{{pubblicita.script|raw}}<br>
+<a class="btn btn-info btn-xs" href="{{ path('addpubblicita') }}">indietro</a>
+{% endblock %}

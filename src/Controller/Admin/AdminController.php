@@ -11,6 +11,8 @@ use App\Form\Admin\ArticolicategoriaType;
 use App\Entity\Admin\Articolicategoria;
 use App\Form\Admin\ArticoliType;
 use App\Entity\Admin\Articoli;
+use App\Form\Admin\PubblicitaType;
+use App\Entity\Admin\Pubblicita;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -303,6 +305,122 @@ class AdminController extends Controller
       'admin/viewarticoli.html.twig',array(
         'articoli' => $articoli
       ));
+  }
+
+  /**
+   * @Route("/addpubblicita", name="addpubblicita")
+   */
+  public function addpubblicitaAction(Request $request)
+  {
+      $em= $this->getDoctrine()->getManager();
+      $pubblicita= $em->getRepository(Pubblicita::class)->findAll();
+      // 1) build the form
+      $nuovapubblicita = new Pubblicita();
+      $form = $this->createForm(PubblicitaType::class, $nuovapubblicita);
+
+      // 2) handle the submit (will only happen on POST)
+      $form->handleRequest($request);
+      if ($form->isSubmitted() && $form->isValid()) {
+          // 4) save the User!
+          $entityManager = $this->getDoctrine()->getManager();
+          $entityManager->persist($nuovapubblicita);
+          $entityManager->flush();
+          // ... do any other work - like sending them an email, etc
+          // maybe set a "flash" success message for the user
+          return $this->redirectToRoute('addpubblicita');
+      }
+
+      return $this->render(
+          'admin/addpubblicita.html.twig',array(
+            'form' => $form->createView(),
+            'pubblicita' => $pubblicita,
+            'nuovapubblicita' => $nuovapubblicita,
+          ));
+  }
+
+  /**
+  * @Route("/pubblicita/view/{id}", name="viewpubblicita")
+  */
+  public function pubblicitaviewAction(Request $request,$id)
+  {
+    $entityManager = $this->getDoctrine()->getManager();
+    $pubblicita= $entityManager->getRepository(Pubblicita::class)->find($id);
+    return $this->render(
+      'admin/viewpubblicita.html.twig',array(
+        'pubblicita' => $pubblicita
+      ));
+  }
+
+  /**
+  * @Route("/pubblicita/delete/{id}", name="deletepubblicita")
+  */
+  public function deletepubblicitaAction($id)
+  {
+    $entityManager = $this->getDoctrine()->getManager();
+    $pubblicita = $entityManager->getRepository(Pubblicita::class)->find($id);
+    if (!$pubblicita) {
+      throw $this->createNotFoundException(
+        'Articoli non trovato '.$id
+      );
+    }
+    $entityManager->remove($pubblicita);
+    $entityManager->flush();
+    return $this->redirectToRoute('addpubblicita');
+  }
+
+  /**
+  * @Route("/pubblicita/edit/{id}", name="editpubblicita")
+  */
+  public function editpubblicitaAction(Request $request,$id)
+  {
+    $entityManager = $this->getDoctrine()->getManager();
+    $pubblicita = $entityManager->getRepository(Pubblicita::class)->find($id);
+    $pubblicita->setActive($pubblicita->getActive());
+    $pubblicita->setCompagnia($pubblicita->getCompagnia());
+    $pubblicita->setPosizione($pubblicita->getPosizione());
+    $pubblicita->setScript($pubblicita->getScript());
+    if (!$pubblicita) {
+      throw $this->createNotFoundException(
+        'Pubblicita non trovato'.$id
+      );
+    }
+    $form = $this->createForm(PubblicitaType::class, $pubblicita);
+    if ($request->isMethod('POST')) {
+      // handle the first form
+      $form->handleRequest($request);
+      // control form //
+      if($form->isSubmitted() &&  $form->isValid()){
+        // updates the 'brochure' property to store the PDF file name
+        // instead of its contents
+        $active = $form['active']->getData();
+        $compagnia = $form['compagnia']->getData();
+        $script= $form['script']->getData();
+        $posizione= $form['posizione']->getData();
+        $sn = $this->getDoctrine()->getManager();
+        $pubblicita = $sn->getRepository(Pubblicita::class)->find($id);
+        $pubblicita->setActive($active);
+        $pubblicita->setCompagnia($compagnia);
+        $pubblicita->setPosizione($posizione);
+        $pubblicita->setScript($script);
+        $sn -> persist($pubblicita);
+        $sn -> flush();
+        $request->getSession()
+        ->getFlashBag()
+        ->add('success', 'Hai modificato una pubblicita');
+      }
+      else {
+        // alert insucces //
+        $request->getSession()
+        ->getFlashBag()
+        ->add('notsuccess', 'Pubblicita gia presente');
+      }
+      return $this->redirectToRoute('addpubblicita');
+    }
+    return $this->render('admin/editpubblicita.html.twig', [
+      'form' => $form->createView(),
+      'pubblicita' => $pubblicita
+
+    ]);
   }
 
 }

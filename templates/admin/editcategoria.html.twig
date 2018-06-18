@@ -14,7 +14,7 @@
 </div>
 <div class="form-group">
   {% if categoria.image == true %}
-    {{ form_row(form.image, {'attr': {'class': 'hidden'}}) }}
+    {{ form_row(form.image) }}
     <img src="{{ asset('uploads/image/' ~ categoria.image.filename) }}">
   {% else %}
     {{ form_row(form.image) }}

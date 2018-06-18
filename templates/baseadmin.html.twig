@@ -91,7 +91,7 @@
                           <a href="#" class="btn btn-default btn-flat">Profile</a>
                         </div>
                         <div class="pull-right">
-                          <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                          <a href="{{ path('logout') }}" class="btn btn-default btn-flat">Sign out</a>
                         </div>
                       </li>
                     </ul>
@@ -150,8 +150,8 @@
                   <ul class="treeview-menu">
                     <li><a href="{{ path('addcategoria') }}">Crea categoria</a></li>
                     <li><a href="{{ path('addarticoli') }}">Crea articoli</a></li>
-
                   </ul>
+                  <li class="{{ app.request.get('_route') == 'user_registration' ? 'active' }}"><a href="{{ path('addpubblicita') }}"><i class="fa fa-arrows"></i> <span>Script</span></a></li>
                 </li>
               </ul>
               <!-- /.sidebar-menu -->
