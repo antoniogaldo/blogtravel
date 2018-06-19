@@ -9,11 +9,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Form\Security\UserType;
 use App\Entity\Security\User;
+use App\Entity\Security\Commenti;
+use App\Form\Security\CommentiType;
 use App\Form\Admin\ArticolicategoriaType;
 use App\Entity\Admin\Articolicategoria;
 use App\Form\Admin\ArticoliType;
 use App\Entity\Admin\Articoli;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class SiteController extends Controller
 {
@@ -48,6 +51,7 @@ class SiteController extends Controller
      ));
  }
 
+
  /**
  * @Route("/categoria/articoli/{id}", name="articolisite")
  */
@@ -55,9 +59,23 @@ class SiteController extends Controller
  {
    $entityManager = $this->getDoctrine()->getManager();
    $articoli = $entityManager->getRepository(Articoli::class)->find($id);
+   $commenti = new Commenti();
+   $form = $this->createForm(CommentiType::class, $commenti);
+   $form->handleRequest($request);
+   if ($form->isSubmitted() && $form->isValid()) {
+     $user = $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED');
+     $user = $this->getUser();
+     $commenti->setUserId($user);  //)
+       // 4) save the User!
+       $entityManager = $this->getDoctrine()->getManager();
+       $commenti->setUserId($user);
+       $entityManager->persist($commenti);
+       $entityManager->flush();
+   }
    return $this->render(
      'site/articolisite.html.twig',array(
        'articoli' => $articoli,
+        'form' => $form->createView(),
      ));
  }
 }

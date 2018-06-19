@@ -5,10 +5,11 @@ namespace App\Entity\Security;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUser;
+use App\Entity\Security\Commenti;
 
 
 /**
- * @ORM\Table(name="user")
+ * @ORM\Table(name="user__user")
  * @ORM\Entity(repositoryClass="App\Repository\Security\UserRepository")
  */
 class User implements UserInterface, \Serializable
@@ -54,6 +55,16 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=254, nullable=true)
      */
     private $facebookAccessToken;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Commenti", mappedBy="commenti", cascade={"persist", "remove"})
+    */
+    private $usercommenti;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Commenti", mappedBy="like", cascade={"persist", "remove"})
+    */
+    private $userlike;
 
 
     public function __construct()
@@ -262,7 +273,6 @@ class User implements UserInterface, \Serializable
     {
         return $this->facebookAccessToken;
     }
-
 
 
 }
