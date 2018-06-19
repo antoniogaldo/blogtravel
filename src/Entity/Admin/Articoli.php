@@ -60,7 +60,7 @@ class Articoli
 
     /**
     * @ORM\ManyToOne(targetEntity="Articolicategoria", inversedBy="articolicategoria")
-    * @ORM\JoinColumn(name="articolicategoriai_id", referencedColumnName="id", onDelete="SET NULL")
+    * @ORM\JoinColumn(name="articolicategoria_id", referencedColumnName="id", onDelete="SET NULL")
     */
     private $categoria;
 

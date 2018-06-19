@@ -1106,7 +1106,7 @@ h6
     color: #222;
 }.section-gap
 {
-    padding: 80px 0;
+    padding: 80px;
 }.section-title
 {
     padding-bottom: 30px;
@@ -1519,7 +1519,7 @@ h6
     background-color: #fff;box-shadow: -14.142px 14.142px 20px 0 rgba(157,157,157,.2);
 }.footer-area
 {
-    padding-top: 100px;background-color: #222;
+  background-color: #222;
 }.footer-area .footer-nav li
 {
     margin-top: 8px;
@@ -2167,4 +2167,10 @@ p {
 }
 .hidden{
   display: none;
+}
+.media {
+    float: left;
+}
+.white{
+  color: white;
 }

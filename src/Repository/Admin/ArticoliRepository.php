@@ -17,5 +17,11 @@ class ArticoliRepository extends \Doctrine\ORM\EntityRepository
     $qb = $this->createQueryBuilder('a');
 
   }
+  public function findCategoria(){
+    $qb = $this->createQueryBuilder('a');
+    $qb->setMaxResults( 1 );
+    $qb->orderBy('a.categoria', 'DESC');
+    return $qb->getQuery()->getResult();
+  }
 
 }
