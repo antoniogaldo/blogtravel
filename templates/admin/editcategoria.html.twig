@@ -15,9 +15,9 @@
 <div class="form-group">
   {% if categoria.image == true %}
     {{ form_row(form.image) }}
-    <img src="{{ asset('uploads/image/' ~ categoria.image.filename) }}">
+    <a href="{{ path('viewcategoria', { id: categoria.id }) }}">Guarda immagine</a>
   {% else %}
-    {{ form_row(form.image) }}
+     {{ form_row(form.image) }}
   {% endif %}
 </div>
     <button type="submit" class="btn btn-warning">Modifica</button>

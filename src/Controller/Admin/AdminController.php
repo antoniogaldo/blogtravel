@@ -16,6 +16,7 @@ use App\Entity\Admin\Pubblicita;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use App\Service\FileUploader;
+use Symfony\Component\Filesystem\Filesystem;
 
 class AdminController extends Controller
 {
@@ -96,14 +97,14 @@ class AdminController extends Controller
   /**
   * @Route("/categoria/edit/{id}", name="editcategoria")
   */
-  public function editcategoriaAction(Request $request,$id)
+  public function editcategoriaAction(Request $request, FileUploader $fileUploader,$id)
   {
     $entityManager = $this->getDoctrine()->getManager();
     $categoria = $entityManager->getRepository(Articolicategoria::class)->find($id);
     $categoria->setNome($categoria->getNome());
     $categoria->setData($categoria->getData());
     $categoria->setActive($categoria->getActive());
-    $image = new File($this->getParameter('image_directory').'/'.$categoria->getImage());
+    $image = $this->getParameter('image_directory').'/'.$categoria->getImage();
     $categoria->setImage($image);
     if (!$categoria) {
       throw $this->createNotFoundException(
@@ -119,16 +120,11 @@ class AdminController extends Controller
         $nome = $form['nome']->getData();
         $data= $form['data']->getData();
         $active = $form['active']->getData();
-        if(!empty($image)) {
-          $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
-          $image->move($this->getParameter('image_directory'),$imagename);
-       }
         $sn = $this->getDoctrine()->getManager();
         $categoria = $sn->getRepository(Articolicategoria::class)->find($id);
         $categoria->setNome($nome);
         $categoria->setData($data);
         $categoria->setActive($active);
-        $categoria->setImage($imagename);
         $sn -> persist($categoria);
         $sn -> flush();
         $request->getSession()

@@ -33,3 +33,7 @@ services:
     App\Service\FileUploader:
       arguments:
           $targetDirectory: '%kernel.project_dir%/public/uploads/image'
+    App\EventListener\BrochureUploadListener:
+      tags:
+          - { name: doctrine.event_listener, event: prePersist }
+          - { name: doctrine.event_listener, event: preUpdate }

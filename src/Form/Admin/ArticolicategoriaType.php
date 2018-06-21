@@ -26,7 +26,7 @@ class ArticolicategoriaType extends AbstractType
                     'non attivo' =>'1',
             )))
             ->add('image', FileType::class, array(
-              'required' => true,
+              'required' => false,
               'label' => 'Immagine',
               'data_class' => null))
             ;
