@@ -5,6 +5,8 @@ namespace App\Entity\Admin;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Admin\Articolicategoria;
+use App\Entity\Security\Likecomment;
+use App\Entity\Security\Commenti;
 
 /**
  * @ORM\Table(name="articoli__articoli")
@@ -65,11 +67,19 @@ class Articoli
     private $categoria;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Security\Commenti", mappedBy="articoli")
+     */
+    private $commenti;
+
+
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->commenti = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -268,6 +278,54 @@ class Articoli
     public function getCategoria()
     {
     return $this->categoria;
+    }
+
+    /**
+    * Set Likecomment
+    *
+    * @param mixed $likecomment
+    *
+    * @return Articoli
+    */
+    public function setLikecomment($likecomment)
+    {
+     $this->likecomment = $likecomment;
+
+    return $this;
+    }
+
+    /**
+    * Get Likecomment
+    *
+    * @return mixed
+    */
+    public function getLikecomment()
+    {
+    return $this->likecomment;
+    }
+
+    /**
+    * Set Commenti
+    *
+    * @param mixed $commenti
+    *
+    * @return Articoli
+    */
+    public function setCommenti($commenti)
+    {
+     $this->commenti = $commenti;
+
+    return $this;
+    }
+
+    /**
+    * Get Commenti
+    *
+    * @return mixed
+    */
+    public function getCommenti()
+    {
+    return $this->commenti;
     }
 
 }

@@ -52,19 +52,54 @@
                             <div class="single-post-content">
                                 {{articoli.articolo|raw}}
                             </div>
+														<div class="bottom-wrapper">
+                                <div class="row">
+																	<div class="col-lg-4 single-b-wrap col-md-12">
+																	<a href="{{path('addlikecomment',{'id': articoli.id})}}">{% if articoli == true %}x{% else %}0{% endif %}</a>
+																			lily and 4 people like this
+																		</div>
+																	<div class="col-lg-4 single-b-wrap col-md-12">
+																			<i class="fa fa-comment-o" aria-hidden="true"></i>
+																	</div>
+																	<div class="col-lg-4 single-b-wrap col-md-12">
+																			<ul class="social-icons">
+																					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+																	</div>
+                                </div>
+															</div>
+															<hr>
                             <!-- Start commentform Area -->
 														{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             <section class="commentform-area  pb-120 pt-80 mb-100">
                                 <div class="container">
+																	<div class="row flex-column">
+                                        <h5 class="text-uppercase pb-80"></h5>
+                                        <br>
+                                        <div class="comment-list">
+																					{% for commenti in articoli.commenti %}
+                                            <div class="single-comment justify-content-between d-flex">
+                                                <div class="user justify-content-between d-flex">
+                                                    <div class="desc">
+                                                        <h5><a href="#">{{commenti.userId.username|capitalize}}</a></h5>
+                                                        <p class="date"></p>
+                                                        <p class="comment">{{commenti.commenti}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="reply-btn">
+                                                       <a href="" class="btn-reply text-uppercase">Rispondi</a>
+                                                </div>
+                                            </div>
+																					{% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+																		<hr>
                                     <h5 class="text-uppercas pb-50">Commenta articolo</h5>
                                     <div class="row flex-row d-flex">
                                         <div class="col-lg-6">
 																					{{ form_start(form) }}
 																					<div class="form-group">
 																							{{ form_row(form.commenti, {'attr': {'class': 'form-control common-input mb-10'}}) }}
-																					</div>
-																					<div class="form-group">
-																							{{ form_row(form.likecomment, {'attr': {'class': 'form-control common-input mb-10'}}) }}
 																					</div>
 																						<button type="submit" class="primary-btn">Commenta</button>
 																				{{ form_end(form) }}
@@ -179,5 +214,6 @@
         <!-- End post Area -->
     </div>
     <!-- End post Area -->
+<script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
 
 {% endblock %}

@@ -2035,7 +2035,7 @@ h6
     background-color: transparent;
 }.commentform-area
 {
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }.commentform-area .form-control
 {font-size: 14px;font-weight: 400;
 
@@ -2173,4 +2173,10 @@ p {
 }
 .white{
   color: white;
+}
+.hr{
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #eee;
 }

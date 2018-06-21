@@ -13,7 +13,7 @@
 						<div class="head-bottom-meta d-flex justify-content-between align-items-end col-lg-12">
 							<div class="col-lg-6 flex-row d-flex meta-left no-padding">
 								<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-								<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+								<p><span class="lnr lnr-bubble"></span> {{ likecommenti|length }}{% if likecommenti|length == 1  %}&nbsp;&nbsp;Commento{% else %}&nbsp;&nbsp;Commenti{% endif %}</p>
 							</div>
 							<div class="col-lg-6 flex-row d-flex meta-right no-padding justify-content-end">
 								<div class="user-meta">
@@ -51,7 +51,7 @@
 							  	<p class="white">{{a.data|date("F")}}</p>
 							  </div>
 							  <div class="media-body align-self-center">
-							    <h4 class="mt-0"><a href="{{ path('articolisite', { id: home.id }) }}">{{a.titolo|capitalize}}</a></h4>
+							    <h4 class="mt-0"><a href="{{ path('articolisite', { id: a.id }) }}">{{a.titolo|capitalize}}</a></h4>
 							    <p>{{a.articolo|slice(0,80)|raw}}...</p>
 								<div class="meta-bottom d-flex justify-content-between">
 									<p><span class="lnr lnr-heart"></span> 15 Likes</p>

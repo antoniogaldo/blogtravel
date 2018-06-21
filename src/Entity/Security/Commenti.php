@@ -19,15 +19,9 @@ class Commenti
      */
     private $id;
 
-    /**
-      * @var boolean
-      *
-      * @ORM\Column(name="likecomment", type="boolean",nullable=true)
-      */
-     private $likecomment;
 
      /**
-      * @ORM\Column(type="string", length=1000)
+      * @ORM\Column(type="string", length=1000,nullable=true)
       */
      private $commenti;
 
@@ -38,6 +32,13 @@ class Commenti
       * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
       */
      private $user_id;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Admin\Articoli", inversedBy="commenti")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    private $articoli;
+
 
 
     /**
@@ -54,29 +55,6 @@ class Commenti
         return $this->id;
     }
 
-    /**
-     * Set likecomment
-     *
-     * @param boolean $likecomment
-     *
-     * @return Commenti
-     */
-    public function setLikecomment($likecomment)
-    {
-        $this->likecomment = $likecomment;
-
-        return $this;
-    }
-
-    /**
-     * Get likecomment
-     *
-     * @return boolean
-     */
-    public function getLikecomment()
-    {
-        return $this->likecomment;
-    }
 
     /**
      * Set commenti
@@ -122,6 +100,29 @@ class Commenti
     public function getUserId()
     {
         return $this->user_id;
+    }
+
+    /**
+     * Set integer articoli
+     *
+     * @param App\Entity\Admin\Articoli $articoli
+     * @return Commenti
+     */
+    public function setArticoli($articoli)
+    {
+        $this->articoli = $articoli;
+
+        return $this;
+    }
+
+    /**
+     * Get articoli
+     *
+     * @return App\Entity\Admin\Articoli
+     */
+    public function getArticoli()
+    {
+        return $this->articoli;
     }
 
 }

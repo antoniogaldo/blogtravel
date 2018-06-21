@@ -59,12 +59,8 @@ class User implements UserInterface, \Serializable
     /**
     * @ORM\OneToMany(targetEntity="Commenti", mappedBy="commenti", cascade={"persist", "remove"})
     */
-    private $usercommenti;
+    private $articolilike_id;
 
-    /**
-    * @ORM\OneToMany(targetEntity="Commenti", mappedBy="like", cascade={"persist", "remove"})
-    */
-    private $userlike;
 
 
     public function __construct()
