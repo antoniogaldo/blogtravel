@@ -20,6 +20,7 @@ class CommentiType extends AbstractType
     {
         $builder
             ->add('commenti', TextareaType::class, array(
+              'label'=> false,
               'attr' => array('cols' => '5', 'rows' => '5'),
             ))
             ;

@@ -29,13 +29,11 @@ class SiteController extends Controller
   {
    $entityManager = $this->getDoctrine()->getManager();
    $home = $entityManager->getRepository(Articoli::class)->findFirst();
-   $articoli = $entityManager->getRepository(Articoli::class)->findAll();
+   $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo();
    $categoria = $entityManager->getRepository(Articolicategoria::class)->findAll();
-   $likecommenti = $entityManager->getRepository(Commenti::class)->findAll();
    return $this->render('site/index.html.twig',array(
      'home' => $home,
      'categoria' => $categoria,
-     'likecommenti' => $likecommenti,
      'articoli' => $articoli
    ));
  }

@@ -13,7 +13,13 @@
 						<div class="head-bottom-meta d-flex justify-content-between align-items-end col-lg-12">
 							<div class="col-lg-6 flex-row d-flex meta-left no-padding">
 								<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-								<p><span class="lnr lnr-bubble"></span> {{ likecommenti|length }}{% if likecommenti|length == 1  %}&nbsp;&nbsp;Commento{% else %}&nbsp;&nbsp;Commenti{% endif %}</p>
+								<p><span class="lnr lnr-bubble"></span>
+									{% set count = 0 %}
+									{% for c in home.commenti %}
+											{% set count = count + 1 %}
+									{% endfor %}
+									{{ count }}
+								</p>
 							</div>
 							<div class="col-lg-6 flex-row d-flex meta-right no-padding justify-content-end">
 								<div class="user-meta">
@@ -55,7 +61,13 @@
 							    <p>{{a.articolo|slice(0,80)|raw}}...</p>
 								<div class="meta-bottom d-flex justify-content-between">
 									<p><span class="lnr lnr-heart"></span> 15 Likes</p>
-									<p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+									<p><span class="lnr lnr-bubble"></span>
+										{% set count = 0 %}
+										{% for c in a.commenti %}
+												{% set count = count + 1 %}
+										{% endfor %}
+										{{ count }}
+									</p>
 								</div>
 							  </div>
 							</div>
