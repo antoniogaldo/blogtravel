@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Table(name="articoli__categoria")
  * @ORM\Entity(repositoryClass="App\Repository\Admin\ArticolicategoriaRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Articolicategoria
 {

@@ -17,12 +17,11 @@
     {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
-  {{dump(articoli)}}
   {% if articoli.image == true %}
     {{ form_row(form.image) }}
     <img class="preimage" src="{{ asset('uploads/image/' ~ articoli.image.filename) }}">
   {% else %}
-    {{ form_row(form.image) }}
+     {{ form_row(form.image) }}
   {% endif %}
 </div>
 <div class="form-group">

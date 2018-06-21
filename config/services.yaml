@@ -6,7 +6,6 @@ parameters:
     locale: 'it'
     image_directory: '%kernel.project_dir%/public/uploads/image'
 services:
-
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -31,3 +30,6 @@ services:
     # please note that last definitions always *replace* previous ones
     hwi_oauth.user.provider.entity:
         class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
+    App\Service\FileUploader:
+      arguments:
+          $targetDirectory: '%kernel.project_dir%/public/uploads/image'

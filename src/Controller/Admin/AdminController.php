@@ -15,6 +15,7 @@ use App\Form\Admin\PubblicitaType;
 use App\Entity\Admin\Pubblicita;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use App\Service\FileUploader;
 
 class AdminController extends Controller
 {
@@ -30,7 +31,7 @@ class AdminController extends Controller
   /**
    * @Route("/addcategoria", name="addcategoria")
    */
-  public function addcategoriaAction(Request $request)
+  public function addcategoriaAction(Request $request, FileUploader $fileUploader)
   {
       $em= $this->getDoctrine()->getManager();
       $categoria= $em->getRepository(Articolicategoria::class)->findAll();
@@ -42,11 +43,7 @@ class AdminController extends Controller
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid()) {
         $image = $articolicategoria->getImage();
-        $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
-        // moves the file to the directory where brochures are stored
-        $image->move($this->getParameter('image_directory'),$imagename);
-        // updates the 'brochure' property to store the PDF file name
-        // instead of its contents
+        $imagename = $fileUploader->upload($image);
         $articolicategoria->setImage($imagename);
           // 4) save the User!
           $entityManager = $this->getDoctrine()->getManager();
