@@ -162,7 +162,7 @@ class AdminController extends Controller
   /**
    * @Route("/addarticoli", name="addarticoli")
    */
-  public function addarticoliAction(Request $request)
+  public function addarticoliAction(Request $request, FileUploader $fileUploader)
   {
       $em= $this->getDoctrine()->getManager();
       $articoliwrite= $em->getRepository(Articoli::class)->findAll();
@@ -174,11 +174,7 @@ class AdminController extends Controller
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid()) {
           $image = $articoli->getImage();
-          $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
-          // moves the file to the directory where brochures are stored
-          $image->move($this->getParameter('image_directory'),$imagename);
-          // updates the 'brochure' property to store the PDF file name
-          // instead of its contents
+          $imagename = $fileUploader->upload($image);
           $articoli->setImage($imagename);
           // 4) save the User!
           $entityManager = $this->getDoctrine()->getManager();
@@ -219,19 +215,19 @@ class AdminController extends Controller
   /**
   * @Route("/articoli/edit/{id}", name="editarticoli")
   */
-  public function editarticoliAction(Request $request,$id)
+  public function editarticoliAction(Request $request, FileUploader $fileUploader,$id)
   {
     $entityManager = $this->getDoctrine()->getManager();
     $articoli = $entityManager->getRepository(Articoli::class)->find($id);
     $articoli->setActive($articoli->getActive());
     $articoli->setTitolo($articoli->getTitolo());
     $articoli->setData($articoli->getData());
-    $image = new File($this->getParameter('image_directory').'/'.$articoli->getImage());
-    $articoli->setImage($image);
     $articoli->setTags($articoli->getTags());
     $articoli->setArticolo($articoli->getArticolo());
     $articoli->setAutore($articoli->getAutore());
     $articoli->setCategoria($articoli->getCategoria());
+    $image = $this->getParameter('image_directory').'/'.$articoli->getImage();
+    $articoli->setImage($image);
     if (!$articoli) {
       throw $this->createNotFoundException(
         'Articoli non trovato'.$id
@@ -247,10 +243,6 @@ class AdminController extends Controller
         // instead of its contents
         $active = $form['active']->getData();
         $titolo = $form['titolo']->getData();
-        if(!empty($image)) {
-          $imagename = $this->generateUniqueFileName().'.'.$image->guessExtension();
-          $image->move($this->getParameter('image_directory'),$imagename);
-       }
         $data= $form['data']->getData();
         $articolo= $form['articolo']->getData();
         $tags= $form['tags']->getData();
@@ -260,7 +252,6 @@ class AdminController extends Controller
         $articoli = $sn->getRepository(Articoli::class)->find($id);
         $articoli->setActive($active);
         $articoli->setTitolo($titolo);
-        $articoli->setImage($imagename);
         $articoli->setData($data);
         $articoli->setTags($tags);
         $articoli->setArticolo($articolo);

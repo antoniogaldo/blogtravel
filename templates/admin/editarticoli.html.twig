@@ -19,7 +19,7 @@
 <div class="form-group">
   {% if articoli.image == true %}
     {{ form_row(form.image) }}
-    <img class="preimage" src="{{ asset('uploads/image/' ~ articoli.image.filename) }}">
+    <a href="{{ path('viewarticoli', { id: articoli.id }) }}">Guarda immagine</a>
   {% else %}
      {{ form_row(form.image) }}
   {% endif %}

@@ -11,6 +11,7 @@ use App\Entity\Security\Commenti;
 /**
  * @ORM\Table(name="articoli__articoli")
  * @ORM\Entity(repositoryClass="App\Repository\Admin\ArticoliRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Articoli
 {

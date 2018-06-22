@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use App\Entity\Admin\Articolicategoria;
+use App\Entity\Admin\Articoli;
 use App\Service\FileUploader;
 
 class BrochureUploadListener
@@ -30,7 +31,7 @@ class BrochureUploadListener
         $entity = $args->getEntity();
 
         // This logic only works for Product entities
-        if (!$entity instanceof Articolicategoria) {
+        if (!$entity instanceof Articolicategoria && !$entity instanceof Articoli) {
             return;
         }
 
@@ -71,7 +72,7 @@ class BrochureUploadListener
     private function uploadFile($entity)
     {
         // upload only works for Product entities
-        if (!$entity instanceof Articolicategoria) {
+        if (!$entity instanceof Articolicategoria && !$entity instanceof Articoli) {
             return;
         }
 
@@ -88,7 +89,7 @@ class BrochureUploadListener
     {
         $entity = $args->getEntity();
 
-        if (!$entity instanceof Articolicategoria) {
+        if (!$entity instanceof Articolicategoria && !$entity instanceof Articoli) {
             return;
         }
 
