@@ -14,7 +14,9 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
       <div class="login-logo">
-        <img class="brand" src="{{ asset('images/Logo1.svg') }}"></img>
+        <a href="{{ path('home') }}">
+          <img class="brand" src="{{ asset('images/Logo1.svg') }}"></img>
+        </a>
       </div>
       <p class="login-box-msg">Iscriviti</p>
         {{ form_start(form) }}
@@ -30,6 +32,10 @@
         <div class="form-group">
           {{ form_row(form.Password.second, {'attr': {'class': 'form-control'}}) }}
         </div>
+        <div class="form-check">
+          {{ form_row(form.accetto, {'attr': {'class': 'form-check-label'}}) }}
+        </div>
+        <p>asdasdasdasdasdasd</p>
         <div class="form-group hidden">
           {{ form_row(form.roles, {'attr': {'class': 'form-control'}}) }}
         </div>

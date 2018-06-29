@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUser;
 use App\Entity\Security\Commenti;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -45,6 +46,13 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="json_array")
      */
     private $roles = [];
+
+    /**
+      * @var boolean
+      *
+      * @ORM\Column(name="accetto", type="boolean")
+      */
+     private $accetto;
 
     /**
      * @ORM\Column(type="string", length=254, nullable=true)
@@ -270,5 +278,28 @@ class User implements UserInterface, \Serializable
         return $this->facebookAccessToken;
     }
 
+    /**
+     * Set accetto
+     *
+     * @param boolean $accetto
+     *
+     * @return User
+     */
+    public function setAccetto($accetto)
+    {
+        $this->accetto = $accetto;
+
+        return $this;
+    }
+
+    /**
+     * Get accetto
+     *
+     * @return boolean
+     */
+    public function getAccetto()
+    {
+        return $this->accetto;
+    }
 
 }

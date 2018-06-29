@@ -2244,3 +2244,11 @@ a.dropdown-item.light{
 .articoloindex{
   min-width: 100px;
 }
+}
+input#register_accetto{
+    margin: 2px;
+}
+.login-box, .register-box {
+    width: 360px;
+    margin: 4% auto;
+}

@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 class RegisterType extends AbstractType
 {
@@ -24,6 +26,14 @@ class RegisterType extends AbstractType
                 'second_options' => array('label' => 'Repeat Password'),
             ))
             ->add('email', EmailType::class)
+            ->add('accetto', CheckboxType::class, array(
+                  'label' => 'Accetto',
+                  'required' => false,
+                  'constraints' => array(
+                      new IsTrue(
+                          array('message' => 'accetta le condizioni di privacy se intendi registrarti')
+                      )),
+            ))
             ->add('roles', ChoiceType::class, array(
               'multiple' => true,
                'choices' => array(

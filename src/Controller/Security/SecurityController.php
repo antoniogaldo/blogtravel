@@ -11,6 +11,7 @@ use App\Form\Security\UserType;
 use App\Form\Security\RegisterType;
 use App\Entity\Security\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class SecurityController extends Controller
 {
@@ -63,6 +64,9 @@ class SecurityController extends Controller
             $entityManager->flush();
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
+            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+            $this->container->get('security.token_storage')->setToken($token);
+            $this->container->get('session')->set('_security_main', serialize($token));
             return $this->redirectToRoute('home');
         }
 
