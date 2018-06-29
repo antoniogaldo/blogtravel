@@ -1,0 +1,25 @@
+{% for a in articoli %}
+<div class="col-md-6 single-travel media">
+  <div class="col-md-6">
+  <img class="img-fluid d-flex  mr-3" src="{{ asset('uploads/image/' ~ a.image) }}" alt="">
+</div>
+  <div class="dates">
+    <span>{{a.data|date("j")}}</span>
+    <p class="white">{{a.data|date("F")}}</p>
+  </div>
+  <div class="media-body align-self-center">
+    <h4 class="mt-0"><a href="{{ path('articolisite', { id: a.id }) }}">{{a.titolo|capitalize}}</a></h4>
+    <p class="articoloindex">{{a.articolo|slice(0,80)|raw}}...</p>
+  <div class="meta-bottom d-flex justify-content-between">
+    <p><span class="lnr lnr-bubble"></span>
+      {% set count = 0 %}
+      {% for c in a.commenti %}
+          {% set count = count + 1 %}
+      {% endfor %}
+      {{ count }}
+    </p>
+  </div>
+  </div>
+  <div class="space"></div>
+</div>
+{% endfor %}

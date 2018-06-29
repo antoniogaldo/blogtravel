@@ -19,9 +19,12 @@ use App\Form\Admin\ArticoliType;
 use App\Entity\Admin\Articoli;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class SiteController extends Controller
 {
+  const DEFAULT_LIMIT = 2;
   /**
    * @Route("/home", name="home")
    */
@@ -29,7 +32,7 @@ class SiteController extends Controller
   {
    $entityManager = $this->getDoctrine()->getManager();
    $home = $entityManager->getRepository(Articoli::class)->findFirst();
-   $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo();
+   $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT);
    $categoria = $entityManager->getRepository(Articolicategoria::class)->findAll();
    return $this->render('site/index.html.twig',array(
      'home' => $home,
@@ -59,6 +62,7 @@ class SiteController extends Controller
  {
    $entityManager = $this->getDoctrine()->getManager();
    $articoli = $entityManager->getRepository(Articoli::class)->find($id);
+   $articolo = $entityManager->getRepository(Articoli::class)->findTags();
    $commenti = new Commenti();
    $commenti->setArticoli($articoli);
    $form = $this->createForm(CommentiType::class, $commenti);
@@ -76,6 +80,7 @@ class SiteController extends Controller
    return $this->render(
      'site/articolisite.html.twig',array(
        'articoli' => $articoli,
+       'articolo' => $articolo,
         'form' => $form->createView(),
      ));
  }
@@ -134,4 +139,25 @@ class SiteController extends Controller
         'form' => $form->createView(),
      ));
  }
+
+ /**
+    * @Route("/ajax_get_articolo", name="ajax_get_articolo")
+    * @Cache(vary={"X-Requested-With"})
+    */
+    public function ajaxArticoloAction(Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $entityManager =  $this->getDoctrine()->getManager();
+
+            $offsetarticolo = $request->get('offsetarticolo');
+
+            $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT, $offsetarticolo);
+
+            return $this->render('ajax/articoli_ajax.html.twig', array(
+                'articoli' => $articoli,
+            ));
+        }
+
+        throw new NotFoundHttpException("Page not found");
+    }
 }

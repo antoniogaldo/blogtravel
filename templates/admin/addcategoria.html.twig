@@ -42,9 +42,6 @@
                   {{ form_row(form.nome, {'attr': {'class': 'form-control'}}) }}
               </div>
               <div class="form-group">
-                  {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
-              </div>
-              <div class="form-group">
                   {{ form_row(form.image) }}
               </div>
                   <button type="submit" class="btn btn-info">Aggiungi</button>
@@ -62,7 +59,6 @@
       <tr>
         <th>Id</th>
         <th>Nome</th>
-        <th>Data</th>
         <th>Azione</th>
       </tr>
     </thead>
@@ -71,7 +67,6 @@
       <tr>
         <td>{{c.id}}</td>
         <td>{{c.nome}}</td>
-        <td>{{c.data|date("d/m/Y")}}</td>
         <td>
           <a class="btn btn-info btn-xs" href="{{ path('viewcategoria', { id: c.id }) }}">vedi</a>
           <a class="btn btn-warning btn-xs" href="{{ path('editcategoria', { id: c.id }) }}">modifica</a>

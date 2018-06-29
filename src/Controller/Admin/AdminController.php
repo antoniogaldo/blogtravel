@@ -102,7 +102,6 @@ class AdminController extends Controller
     $entityManager = $this->getDoctrine()->getManager();
     $categoria = $entityManager->getRepository(Articolicategoria::class)->find($id);
     $categoria->setNome($categoria->getNome());
-    $categoria->setData($categoria->getData());
     $categoria->setActive($categoria->getActive());
     $image = $this->getParameter('image_directory').'/'.$categoria->getImage();
     $categoria->setImage($image);
@@ -118,12 +117,10 @@ class AdminController extends Controller
       // control form //
       if($form->isSubmitted() &&  $form->isValid()){
         $nome = $form['nome']->getData();
-        $data= $form['data']->getData();
         $active = $form['active']->getData();
         $sn = $this->getDoctrine()->getManager();
         $categoria = $sn->getRepository(Articolicategoria::class)->find($id);
         $categoria->setNome($nome);
-        $categoria->setData($data);
         $categoria->setActive($active);
         $sn -> persist($categoria);
         $sn -> flush();
@@ -243,10 +240,10 @@ class AdminController extends Controller
         // instead of its contents
         $active = $form['active']->getData();
         $titolo = $form['titolo']->getData();
-        $data= $form['data']->getData();
         $articolo= $form['articolo']->getData();
         $tags= $form['tags']->getData();
         $autore = $form['autore']->getData();
+        $data = new \DateTime();
         $categoria= $form['categoria']->getData();
         $sn = $this->getDoctrine()->getManager();
         $articoli = $sn->getRepository(Articoli::class)->find($id);

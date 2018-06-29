@@ -26,10 +26,6 @@ class Articolicategoria
      */
     private $nome;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $data;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -80,29 +76,6 @@ class Articolicategoria
         return $this->nome;
     }
 
-    /**
-    * Set Data
-    *
-    * @param \DateTime $data
-    *
-    * @return Articolicategoria
-    */
-    public function setData($data)
-    {
-     $this->data = $data;
-
-    return $this;
-    }
-
-    /**
-    * Get Data
-    *
-    * @return \DateTime
-    */
-    public function getData()
-    {
-    return $this->data;
-    }
 
     /**
     * Set Articolicategoria

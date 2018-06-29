@@ -16,9 +16,6 @@ class ArticolicategoriaType extends AbstractType
     {
         $builder
             ->add('nome', TextType::class)
-            ->add('data', DateType::class, array(
-              'widget' => 'single_text',
-              'format' => 'yyyy-MM-dd',))
             ->add('active', ChoiceType::class, array(
                   'label' => 'active',
                   'choices' => array(

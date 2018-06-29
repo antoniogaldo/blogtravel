@@ -32,9 +32,6 @@ class ArticoliType extends AbstractType
                     'trasporto' =>'trasporto',
                     'classifica' =>'classifica',
             )))
-            ->add('data', DateType::class, array(
-              'widget' => 'single_text',
-              'format' => 'yyyy-MM-dd',))
             ->add('active', ChoiceType::class, array(
                   'label' => 'active',
                   'choices' => array(

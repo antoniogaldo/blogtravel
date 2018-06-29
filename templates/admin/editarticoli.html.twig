@@ -14,9 +14,6 @@
     {{ form_row(form.tags, {'attr': {'class': 'form-control js-example-basic-multiple'}}) }}
 </div>
 <div class="form-group">
-    {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
-</div>
-<div class="form-group">
   {% if articoli.image == true %}
     {{ form_row(form.image) }}
     <a href="{{ path('viewarticoli', { id: articoli.id }) }}">Guarda immagine</a>

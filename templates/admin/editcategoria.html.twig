@@ -10,9 +10,6 @@
     {{ form_row(form.nome, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
-    {{ form_row(form.data, {'attr': {'class': 'form-control'}}) }}
-</div>
-<div class="form-group">
   {% if categoria.image == true %}
     {{ form_row(form.image) }}
     <a href="{{ path('viewcategoria', { id: categoria.id }) }}">Guarda immagine</a>
