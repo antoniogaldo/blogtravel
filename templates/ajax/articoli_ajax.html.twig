@@ -9,7 +9,7 @@
   </div>
   <div class="media-body align-self-center">
     <h4 class="mt-0"><a href="{{ path('articolisite', { id: a.id }) }}">{{a.titolo|capitalize}}</a></h4>
-    <p class="articoloindex">{{a.articolo|slice(0,80)|raw}}...</p>
+    <div class="articoloindex">{{a.articolo|slice(0,80)|raw}}...</div>
   <div class="meta-bottom d-flex justify-content-between">
     <p><span class="lnr lnr-bubble"></span>
       {% set count = 0 %}

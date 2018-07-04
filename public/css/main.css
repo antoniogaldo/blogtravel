@@ -2252,3 +2252,9 @@ input#register_accetto{
     width: 360px;
     margin: 4% auto;
 }
+.articoloindex{
+  word-break: break-all;
+  line-height: 1.5em;
+height: 3em;       /* height is 2x line-height, so two lines will display */
+overflow: hidden;
+}

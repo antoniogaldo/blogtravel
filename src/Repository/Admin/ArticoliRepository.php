@@ -31,6 +31,7 @@ class ArticoliRepository extends \Doctrine\ORM\EntityRepository
 
   public function findTags(){
     $qb = $this->createQueryBuilder('a');
+    $qb->select('a.tags');
     $qb->orderBy('a.tags', 'DESC');
     return $qb->getQuery()->getResult();
   }
