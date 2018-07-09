@@ -25,6 +25,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 class SiteController extends Controller
 {
   const DEFAULT_LIMIT = 2;
+  const DEFAULT_LIMIT_CATEGORIA = 1;
   /**
    * @Route("/home", name="home")
    */
@@ -140,7 +141,7 @@ class SiteController extends Controller
      ));
  }
 
- /**
+    /**
     * @Route("/ajax_get_articolo", name="ajax_get_articolo")
     * @Cache(vary={"X-Requested-With"})
     */
@@ -158,6 +159,26 @@ class SiteController extends Controller
             ));
         }
 
+        throw new NotFoundHttpException("Page not found");
+    }
+
+    /**
+    * @Route("/ajax_get_categoria", name="ajax_get_categoria")
+    * @Cache(vary={"X-Requested-With"})
+    */
+    public function ajaxCategoriaAction(Request $request)
+    {
+      if($request->isXmlHttpRequest()) {
+            $entityManager =  $this->getDoctrine()->getManager();
+
+            $offsetcategoria = $request->get('offsetcategoria');
+
+            $categoria = $entityManager->getRepository(Articolicategoria::class)->findByCategoria(self::DEFAULT_LIMIT_CATEGORIA, $offsetcategoria);
+
+            return $this->render('ajax/categoria_ajax.html.twig', array(
+                'categoria' => $categoria,
+            ));
+        }
         throw new NotFoundHttpException("Page not found");
     }
 }

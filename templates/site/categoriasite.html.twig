@@ -24,7 +24,7 @@
 			 <section class="post-area">
 					 <div class="container">
 							 <div class="row justify-content-center d-flex">
-									 <div class="col-lg-8">
+									 <div class="col-lg-8" id="categoria">
 										 {% for c in categoria.articolicategoria %}
 													 <div class="single-list flex-row d-flex">
 															 <div class="thumb col-md-6">
@@ -38,13 +38,18 @@
 																	 <a href="#"><h4 class="pb-20">{{c.titolo}}</h4></a>
 																	 {{c.articolo|slice(0,100)|raw}}
 																	 <p class="footer pt-10">
-																	<i class="fa fa-comment-o" aria-hidden="true"></i> <a href="#">02 Comments</a>
+																		 <i class="fa fa-comment-o" aria-hidden="true"></i>
+ 																	{% set count = 0 %}
+ 																	{% for commenti in c.commenti %}
+ 																			{% set count = count + 1 %}
+ 																	{% endfor %}
+ 																	{{ count }}
 																	 </p>
 															 </div>
 													 </div>
 													 {% endfor %}
 													 <div class="justify-content-center d-flex">
-															 <a class="text-uppercase primary-btn loadmore-btn mt-40 mb-60" href="#"> Load More Post</a>
+															 <a class="primary-btn pbtn-2 text-uppercase mx-auto mt-60" id="load-more">Load More </a>
 													 </div>
 									 </div>
 									 <div class="col-lg-4 sidebar-area">
@@ -82,4 +87,23 @@
 			 <!-- End post Area -->
 	 </div>
 	 <!-- End post Area -->
+<script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
+<script>
+       var offsetcategoria = 1;
+       $(document).on('click', '#load-more', function() {
+           $.get(
+               '{{ path('ajax_get_categoria') }}',
+               { offsetcategoria: offsetcategoria },
+               function(data, status) {
+                   if(status == 'success') {
+                       if(!data) {
+                           $('#load-more').hide();
+                       }
+                       $('#categoria').append(data);
+                   }
+                   offsetcategoria += 1;
+               }
+           );
+       })
+   </script>
 {% endblock %}

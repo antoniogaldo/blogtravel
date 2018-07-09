@@ -1,0 +1,19 @@
+{% for c in categoria.articolicategoria %}
+      <div class="single-list flex-row d-flex">
+          <div class="thumb col-md-6">
+              <div class="date">
+                <span>{{c.data|date("j")}}</span>
+                <p class="white">{{c.data|date("F")}}</p>
+              </div>
+              <img class="img-fluid d-flex" src="{{ asset('uploads/image/' ~ c.image) }}" alt="">
+          </div>
+          <div class="detail">
+              <a href="#"><h4 class="pb-20">{{c.titolo}}</h4></a>
+              {{c.articolo|slice(0,100)|raw}}
+              <p class="footer pt-10">
+             <i class="fa fa-comment-o" aria-hidden="true"></i>
+             <a href="#">02 Comments</a>
+              </p>
+          </div>
+      </div>
+      {% endfor %}
