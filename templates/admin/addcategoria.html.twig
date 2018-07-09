@@ -58,6 +58,7 @@
     <thead>
       <tr>
         <th>Id</th>
+        <th>Attivo</th>
         <th>Nome</th>
         <th>Azione</th>
       </tr>
@@ -66,6 +67,7 @@
       {% for c in categoria %}
       <tr>
         <td>{{c.id}}</td>
+        <td>{% if c.active == 0 %}{{'attivo'}}{% else %}{{'non attivo'}}{% endif %}</td>
         <td>{{c.nome}}</td>
         <td>
           <a class="btn btn-info btn-xs" href="{{ path('viewcategoria', { id: c.id }) }}">vedi</a>

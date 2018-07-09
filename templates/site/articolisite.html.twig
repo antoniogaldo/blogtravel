@@ -45,7 +45,7 @@
                             <div class="tags">
                                 <ul>
 																	{% for a in articoli.tags %}
-                                    <li><a href="#">{{a}}</a></li>
+                                    <li><a href="#">{{a|capitalize}}</a></li>
 																	{% endfor %}
                                 </ul>
                             </div>
@@ -118,11 +118,28 @@
 
                         <div class="single_widget cat_widget">
                             <h4 class="text-uppercase pb-20">Post Tags</h4>
-                            <ul>{{dump(articolo)}}
-															{% for a in articolo %}
 
-															{% endfor %}
-                            </ul>
+															<ul>
+	 															 <li>
+	 																	 <a href="#">Itinerari <span>37</span></a>
+	 															 </li>
+	 															 <li>
+	 																	 <a href="#">Adventure <span>37</span></a>
+	 															 </li>
+	 															 <li>
+	 																	 <a href="#">Food <span>37</span></a>
+	 															 </li>
+	 															 <li>
+	 																	 <a href="#">Tecnologia <span>37</span></a>
+	 															 </li>
+	 															 <li>
+	 																	 <a href="#">Cultura <span>37</span></a>
+	 															 </li>
+	 															 <li>
+	 																	 <a href="#">Hobby <span>37</span></a>
+	 															 </li>
+	 													 </ul>
+                            
                         </div>
                     </div>
                 </div>

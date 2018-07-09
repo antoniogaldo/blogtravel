@@ -32,10 +32,12 @@
 																		 <span>{{c.data|date("j")}}</span>
 																		 <p class="white">{{c.data|date("F")}}</p>
 																	 </div>
+																	 <a href="{{ path('articolisite', { id: c.id }) }}">
 																	 <img class="img-fluid d-flex" src="{{ asset('uploads/image/' ~ c.image) }}" alt="">
+																 </a>
 															 </div>
 															 <div class="detail">
-																	 <a href="#"><h4 class="pb-20">{{c.titolo}}</h4></a>
+																	 <a href="{{ path('articolisite', { id: c.id }) }}"><h4 class="pb-20">{{c.titolo}}</h4></a>
 																	 {{c.articolo|slice(0,100)|raw}}
 																	 <p class="footer pt-10">
 																		 <i class="fa fa-comment-o" aria-hidden="true"></i>
@@ -58,25 +60,22 @@
 													 <h4 class="text-uppercase pb-20">post categories</h4>
 													 <ul>
 															 <li>
-																	 <a href="#">Technology <span>37</span></a>
+																	 <a href="#">Itinerari <span>37</span></a>
 															 </li>
 															 <li>
-																	 <a href="#">Lifestyle <span>37</span></a>
-															 </li>
-															 <li>
-																	 <a href="#">Fashion <span>37</span></a>
-															 </li>
-															 <li>
-																	 <a href="#">Art <span>37</span></a>
+																	 <a href="#">Adventure <span>37</span></a>
 															 </li>
 															 <li>
 																	 <a href="#">Food <span>37</span></a>
 															 </li>
 															 <li>
-																	 <a href="#">Architecture <span>37</span></a>
+																	 <a href="#">Tecnologia <span>37</span></a>
 															 </li>
 															 <li>
-																	 <a href="#">Adventure <span>37</span></a>
+																	 <a href="#">Cultura <span>37</span></a>
+															 </li>
+															 <li>
+																	 <a href="#">Hobby <span>37</span></a>
 															 </li>
 													 </ul>
 											 </div>

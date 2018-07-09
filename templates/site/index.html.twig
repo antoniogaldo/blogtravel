@@ -48,7 +48,9 @@
 							{% for a in articoli %}
 							<div class="col-md-6 single-travel media">
 								<div class="col-md-6">
+									<a href="{{ path('articolisite', { id: a.id }) }}">
 							  <img class="img-fluid d-flex  mr-3" src="{{ asset('uploads/image/' ~ a.image) }}" alt="">
+							</a>
 							</div>
 							  <div class="dates">
 							  	<span>{{a.data|date("j")}}</span>

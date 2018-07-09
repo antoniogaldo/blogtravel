@@ -34,7 +34,7 @@ class SiteController extends Controller
    $entityManager = $this->getDoctrine()->getManager();
    $home = $entityManager->getRepository(Articoli::class)->findFirst();
    $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT);
-   $categoria = $entityManager->getRepository(Articolicategoria::class)->findAll();
+   $categoria = $entityManager->getRepository(Articolicategoria::class)->findCategoria();
    return $this->render('site/index.html.twig',array(
      'home' => $home,
      'categoria' => $categoria,
@@ -54,7 +54,6 @@ class SiteController extends Controller
        'categoria' => $categoria,
      ));
  }
-
 
  /**
  * @Route("/categoria/articoli/{id}", name="articolisite")
