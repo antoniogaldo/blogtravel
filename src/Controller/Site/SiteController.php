@@ -142,6 +142,14 @@ class SiteController extends Controller
      ));
  }
 
+     /**
+    * @Route("/cookie", name="cookie")
+    */
+    public function cookieAction(Request $request)
+    {
+      return $this->render('site/cookie.html.twig');
+    }
+
     /**
     * @Route("/ajax_get_articolo", name="ajax_get_articolo")
     * @Cache(vary={"X-Requested-With"})
