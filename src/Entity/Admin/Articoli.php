@@ -218,7 +218,7 @@ class Articoli
     */
     public function setData($data)
     {
-     $this->data = new \DateTime();
+     $this->data = $data;
 
     return $this;
     }

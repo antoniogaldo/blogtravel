@@ -243,7 +243,7 @@ class AdminController extends Controller
         $articolo= $form['articolo']->getData();
         $tags= $form['tags']->getData();
         $autore = $form['autore']->getData();
-        $data = new \DateTime();
+        $data = $form['data']->getData();
         $categoria= $form['categoria']->getData();
         $sn = $this->getDoctrine()->getManager();
         $articoli = $sn->getRepository(Articoli::class)->find($id);

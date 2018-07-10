@@ -19,10 +19,11 @@
 
 
 	 <!-- Start post Area -->
-	 <div class="post-wrapper pt-100">
+	 <div class="post-wrapper pt-30">
 			 <!-- Start post Area -->
 			 <section class="post-area">
 					 <div class="container">
+						 <hr>
 							 <div class="row justify-content-center d-flex">
 									 <div class="col-lg-8" id="categoria">
 										 {% for c in categoria.articolicategoria %}
@@ -30,7 +31,7 @@
 															 <div class="thumb col-md-6">
 																	 <div class="date">
 																		 <span>{{c.data|date("j")}}</span>
-																		 <p class="white">{{c.data|date("F")}}</p>
+																		 <p class="white">{{c.data|date|localizeddate('full', 'none', app.request.locale, "Europe/Rome", "MMMM" )}}</p>
 																	 </div>
 																	 <a href="{{ path('articolisite', { id: c.id }) }}">
 																	 <img class="img-fluid d-flex" src="{{ asset('uploads/image/' ~ c.image) }}" alt="">

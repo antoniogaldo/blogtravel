@@ -18,7 +18,7 @@
 					 </section>
 					 <!-- End top-section Area -->
 <!-- Start post Area -->
-    <div class="post-wrapper pt-80">
+    <div class="post-wrapper pt-40">
         <!-- Start post Area -->
         <section class="post-area">
             <div class="container">
@@ -34,7 +34,7 @@
                                     <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
                                         <div class="desc">
                                            <h2>{{articolo.autore|upper}}</h2>
-                                            <h3>{{articolo.data|date("j F Y")}}</h3>
+                                            <h3>{{articolo.data|date|localizeddate('full', 'none', app.request.locale, "Europe/Rome", "d MMMM Y" )}}</h3>
                                         </div>
                                     </div>
                                 </div>

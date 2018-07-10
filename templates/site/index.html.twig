@@ -23,7 +23,7 @@
 							<div class="col-lg-6 flex-row d-flex meta-right no-padding justify-content-end">
 								<div class="user-meta">
 									<h4 class="text-white">{{home.autore|upper}}</h4>
-									<p class="text-white">{{home.data|date("j F Y")}}</p>
+									<p class="text-white">{{home.data|date|localizeddate('full', 'none', app.request.locale, "Europe/Rome", "d MMMM Y" )}}</p>
 								</div>
 							</div>
 						</div>
@@ -54,7 +54,7 @@
 							</div>
 							  <div class="dates">
 							  	<span>{{a.data|date("j")}}</span>
-							  	<p class="white">{{a.data|date("F")}}</p>
+							  	<p class="white">{{home.data|date|localizeddate('full', 'none', app.request.locale, "Europe/Rome", "MMMM" )}}</p>
 							  </div>
 							  <div class="align-self-center articleindex">
 							    <h4 class="mt-0"><a href="{{ path('articolisite', { id: a.id }) }}">{{a.titolo|capitalize}}</a></h4>
