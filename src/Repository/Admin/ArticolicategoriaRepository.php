@@ -18,6 +18,7 @@ class ArticolicategoriaRepository extends \Doctrine\ORM\EntityRepository
 
     return $qb->getQuery()->getResult();
   }
+
   public function findCategoria(){
 
           $qb = $this->createQueryBuilder('c');

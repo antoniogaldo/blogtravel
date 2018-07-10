@@ -26,7 +26,7 @@
 						 <hr>
 							 <div class="row justify-content-center d-flex">
 									 <div class="col-lg-8" id="categoria">
-										 {% for c in categoria.articolicategoria %}
+										 {% for c in categoria.articolicategoria|sort|reverse %}
 													 <div class="single-list flex-row d-flex">
 															 <div class="thumb col-md-6">
 																	 <div class="date">
@@ -34,7 +34,7 @@
 																		 <p class="white">{{c.data|date|localizeddate('full', 'none', app.request.locale, "Europe/Rome", "MMMM" )}}</p>
 																	 </div>
 																	 <a href="{{ path('articolisite', { id: c.id }) }}">
-																	 <img class="img-fluid d-flex" src="{{ asset('uploads/image/' ~ c.image) }}" alt="">
+																	 <img class="img-fluid d-flex" src="{{ asset('uploads/image/' ~ c.image) }}" alt="{{c.titolo}}">
 																 </a>
 															 </div>
 															 <div class="detail">

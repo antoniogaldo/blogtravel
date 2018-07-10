@@ -89,7 +89,7 @@
         <td>{% if a.active == 0 %}{{'attivo'}}{% else %}{{'non attivo'}}{% endif %}</td>
         <td>{{a.titolo}}</td>
         <td>{% for t in a.tags %}{{t}},&nbsp;{% endfor %}</td>
-        <td>{{a.data|date("d/m/Y")}}</td>
+        <td>{{a.data|date("Y/m/d")}}</td>
         <td>{{a.autore}}</td>
         <td>{{a.categoria.nome}}</td>
         <td>
@@ -109,6 +109,9 @@
 <script>
 $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
+    $('#example1').DataTable( {
+        "order": [[ 4, "desc" ]]
+    } );
 });
 </script>
 {% endblock %}

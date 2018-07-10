@@ -48,7 +48,7 @@ class SiteController extends Controller
  public function categoriasiteAction(Request $request,$id)
  {
    $entityManager = $this->getDoctrine()->getManager();
-   $categoria = $entityManager->getRepository(Articolicategoria::class)->find(array('id' =>$id));
+   $categoria = $entityManager->getRepository(Articolicategoria::class)->find(array('id' => $id));
    $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT);
    return $this->render(
      'site/categoriasite.html.twig',array(

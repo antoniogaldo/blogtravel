@@ -5,7 +5,7 @@
 </div>
   <div class="dates">
     <span>{{a.data|date("j")}}</span>
-    <p class="white">{{a.data|date("F")}}</p>
+    <p class="white">{{a.data|date|localizeddate('full', 'none', app.request.locale, "Europe/Rome", "MMMM" )}}</p>
   </div>
   <div class="media-body align-self-center">
     <h4 class="mt-0"><a href="{{ path('articolisite', { id: a.id }) }}">{{a.titolo|capitalize}}</a></h4>

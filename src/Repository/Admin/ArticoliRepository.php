@@ -19,7 +19,7 @@ class ArticoliRepository extends \Doctrine\ORM\EntityRepository
   }
   public function findByArticolo($limit, $offsetarticolo = null){
     $qb = $this->createQueryBuilder('a');
-    $qb->orderBy('a.id', 'DESC');
+    $qb->orderBy('a.data', 'DESC');
     if($offsetarticolo) {
         $qb
             ->setFirstResult($offsetarticolo)
@@ -36,6 +36,13 @@ class ArticoliRepository extends \Doctrine\ORM\EntityRepository
     $qb->orderBy('a.tags', 'DESC');
     return $qb->getQuery()->getResult();
   }
+
+  public function findAll(){
+    $qb = $this->createQueryBuilder('a');
+    $qb->orderBy('a.data', 'DESC');
+    return $qb->getQuery()->getResult();
+  }
+
 
   public function findCategoria(){
     $qb = $this->createQueryBuilder('a');
