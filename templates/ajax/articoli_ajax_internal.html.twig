@@ -1,0 +1,3 @@
+{% for a in articoli %}
+<a href="{{path('articolisite',{id: a.id})}}"><li class="grey">{{a.titolo}}</li></a>
+{% endfor %}

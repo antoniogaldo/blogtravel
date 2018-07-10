@@ -3,6 +3,7 @@
 namespace App\Repository\Admin;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 class ArticoliRepository extends \Doctrine\ORM\EntityRepository
 {
@@ -35,6 +36,7 @@ class ArticoliRepository extends \Doctrine\ORM\EntityRepository
     $qb->orderBy('a.tags', 'DESC');
     return $qb->getQuery()->getResult();
   }
+
   public function findCategoria(){
     $qb = $this->createQueryBuilder('a');
     $qb->setMaxResults( 1 );

@@ -88,7 +88,14 @@ h6
 .h1
 {
     font-size: 36px;
-}h2,
+}
+.grey{
+      color: #4d4d4d;
+}
+.grey:hover{
+  color: white;
+}
+h2,
 .h2
 {
     font-size: 30px;
@@ -2257,4 +2264,16 @@ input#register_accetto{
   line-height: 1.5em;
 height: 3em;       /* height is 2x line-height, so two lines will display */
 overflow: hidden;
+}
+.tagarticle{
+  padding: 4px 28px;
+  -webkit-transition: all .3s ease 0s;
+  -moz-transition: all .3s ease 0s;
+  -o-transition: all .3s ease 0s;
+  transition: all .3s ease 0s;
+  color: #222;
+}
+.tagarticle:hover{
+  color: white;
+  background-image: -webkit-linear-gradient(45deg, #0eb2d3 0%, #1e3d6e 100%);
 }

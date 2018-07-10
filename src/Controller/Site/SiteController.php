@@ -21,11 +21,11 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SiteController extends Controller
 {
   const DEFAULT_LIMIT = 2;
-  const DEFAULT_LIMIT_CATEGORIA = 1;
   /**
    * @Route("/home", name="home")
    */
@@ -48,10 +48,12 @@ class SiteController extends Controller
  public function categoriasiteAction(Request $request,$id)
  {
    $entityManager = $this->getDoctrine()->getManager();
-   $categoria = $entityManager->getRepository(Articolicategoria::class)->find($id);
+   $categoria = $entityManager->getRepository(Articolicategoria::class)->find(array('id' =>$id));
+   $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT);
    return $this->render(
      'site/categoriasite.html.twig',array(
        'categoria' => $categoria,
+       'articoli' => $articoli,
      ));
  }
 
@@ -61,8 +63,8 @@ class SiteController extends Controller
  public function articolisiteAction(Request $request,$id)
  {
    $entityManager = $this->getDoctrine()->getManager();
-   $articoli = $entityManager->getRepository(Articoli::class)->find($id);
-   $articolo = $entityManager->getRepository(Articoli::class)->findTags();
+   $articolo = $entityManager->getRepository(Articoli::class)->find($id);
+   $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT);
    $commenti = new Commenti();
    $commenti->setArticoli($articoli);
    $form = $this->createForm(CommentiType::class, $commenti);
@@ -162,22 +164,25 @@ class SiteController extends Controller
     }
 
     /**
-    * @Route("/ajax_get_categoria", name="ajax_get_categoria")
+    * @Route("/ajax_get_articolo_internal", name="ajax_get_articolo_internal")
     * @Cache(vary={"X-Requested-With"})
     */
-    public function ajaxCategoriaAction(Request $request)
+    public function ajaxArticoloInternalAction(Request $request)
     {
-      if($request->isXmlHttpRequest()) {
+        if($request->isXmlHttpRequest()) {
             $entityManager =  $this->getDoctrine()->getManager();
 
-            $offsetcategoria = $request->get('offsetcategoria');
+            $offsetarticolo = $request->get('offsetarticolo');
 
-            $categoria = $entityManager->getRepository(Articolicategoria::class)->findByCategoria(self::DEFAULT_LIMIT_CATEGORIA, $offsetcategoria);
+            $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT, $offsetarticolo);
 
-            return $this->render('ajax/categoria_ajax.html.twig', array(
-                'categoria' => $categoria,
+            return $this->render('ajax/articoli_ajax_internal.html.twig', array(
+                'articoli' => $articoli,
             ));
         }
+
         throw new NotFoundHttpException("Page not found");
     }
+
+
 }
