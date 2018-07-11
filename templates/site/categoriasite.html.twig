@@ -1,5 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello!{% endblock %}
+{% block head %}
+<title>{{categoria.nome}}</title>
+<meta name="description" content="{{categoria.nome}}"/>
+<link rel="canonical" href="{{ url('home') }}{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{categoria.nome}} &copy;" />
+<meta property="og:description" content="{{categoria.nome}}" />
+<meta property="og:url" content="{{ url('home') }}{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" />
+{{parent()}}
+{% endblock %}
 {% block body %}
 <!-- Start top-section Area -->
 					 <section class="top-section-area section-gap">

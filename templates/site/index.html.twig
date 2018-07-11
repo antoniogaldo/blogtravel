@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello!{% endblock %}
+{% block head %}
+<title>knowtravel</title>
+<meta name="description" content="blog di viaggi, in cui si racconta degli ultime novità, dei suggerimenti per viaggiare, luoghi da visitare e consigli utili quando si viaggi"/>
+<link rel="canonical" href="//knowtravel.it/" />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="knowtravel.it &copy;" />
+<meta property="og:description" content="knowtravel" />
+<meta property="og:url" content="//knowtravel.it" />
+<meta property="og:site_name" content="knowtravel.com &copy;" />
+{{parent()}}
+{% endblock %}
 {% block body %}
   <!-- start banner Area -->
 	{% if home %}
@@ -49,7 +60,7 @@
 							<div class="col-md-6 single-travel media">
 								<div class="col-md-6">
 									<a href="{{ path('articolisite', { id: a.id }) }}">
-							  <img class="img-fluid d-flex  mr-3" src="{{ asset('uploads/image/' ~ a.image) }}" alt="">
+							  <img class="img-fluid d-flex  mr-3" src="{{ asset('uploads/image/' ~ a.image) }}" alt="{{a.titolo}}">
 							</a>
 							</div>
 							  <div class="dates">

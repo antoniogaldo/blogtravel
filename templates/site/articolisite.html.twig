@@ -1,5 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello!{% endblock %}
+{% block head %}
+<title>{{articolo.titolo}}</title>
+<meta name="description" content="{{articolo.articolo|slice(0,300)|raw}}"/>
+<link rel="canonical" href="{{ url('home') }}{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{articolo.titolo}} &copy;" />
+<meta property="og:description" content="{{articolo.articolo|slice(0,300)|raw}}" />
+<meta property="og:url" content="{{ url('home') }}{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" />
+{{parent()}}
+{% endblock %}
 {% block body %}
 <!-- Start top-section Area -->
 					 <section class="top-section-area section-gap">
@@ -25,7 +34,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="single-page-post">
-                            <img class="img-fluid" src="{{ asset('uploads/image/' ~ articolo.image) }}" alt="">
+                            <img class="img-fluid" src="{{ asset('uploads/image/' ~ articolo.image) }}" alt="{{articolo.titolo}}">
                             <div class="top-wrapper ">
                                 <div class="row d-flex justify-content-between">
                                     <h2 class="col-lg-8 col-md-12 text-uppercase">
