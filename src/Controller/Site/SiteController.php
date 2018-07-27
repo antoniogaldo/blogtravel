@@ -66,7 +66,7 @@ class SiteController extends Controller
    $articolo = $entityManager->getRepository(Articoli::class)->find($id);
    $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT);
    $commenti = new Commenti();
-   $commenti->setArticoli($articoli);
+   $commenti->setArticoli($articolo);
    $form = $this->createForm(CommentiType::class, $commenti);
    $form->handleRequest($request);
    if ($form->isSubmitted() && $form->isValid()) {

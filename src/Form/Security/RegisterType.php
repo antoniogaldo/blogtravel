@@ -37,7 +37,9 @@ class RegisterType extends AbstractType
             ->add('roles', ChoiceType::class, array(
               'multiple' => true,
                'choices' => array(
-                 'ROLE USER'  => 'ROLE_USER' ),
+                 'ROLE USER'  => 'ROLE_USER',
+                 'ROLE ADMIN'  => 'ROLE_ADMIN'
+                ),
                'data' => array('ROLE_USER'),
             ));
     }

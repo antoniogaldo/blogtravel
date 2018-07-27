@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Admin\Articolicategoria;
 use App\Entity\Security\Likecomment;
 use App\Entity\Security\Commenti;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="articoli__articoli")
@@ -80,7 +81,7 @@ class Articoli
     public function __construct()
     {
         $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->commenti = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
 

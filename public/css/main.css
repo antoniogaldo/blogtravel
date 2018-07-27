@@ -30,7 +30,11 @@
 ul
 {
     margin: 0;padding: 0;list-style: none;
-}select
+}
+b, strong {
+    font-weight: bold;
+}
+select
 {
     display: block;
 }figure
