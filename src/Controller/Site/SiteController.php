@@ -15,6 +15,7 @@ use App\Entity\Security\Likecomment;
 use App\Form\Security\LikecommentType;
 use App\Form\Admin\ArticolicategoriaType;
 use App\Entity\Admin\Articolicategoria;
+use App\Entity\Admin\Pubblicita;
 use App\Form\Admin\ArticoliType;
 use App\Entity\Admin\Articoli;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -35,10 +36,12 @@ class SiteController extends Controller
    $home = $entityManager->getRepository(Articoli::class)->findFirst();
    $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT);
    $categoria = $entityManager->getRepository(Articolicategoria::class)->findCategoria();
+   $pubblicita = $entityManager->getRepository(Pubblicita::class)->findAll();
    return $this->render('site/index.html.twig',array(
      'home' => $home,
      'categoria' => $categoria,
-     'articoli' => $articoli
+     'articoli' => $articoli,
+     'pubblicita' => $pubblicita
    ));
  }
 

@@ -33,7 +33,7 @@ class Pubblicita
      /**
       * @var string
       *
-      * @ORM\Column(name="tags", type="array", nullable=true)
+      * @ORM\Column(name="posizione", type="array", nullable=true)
       */
      private $posizione;
 

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block head %}
 <title>{{articolo.titolo}}</title>
-<meta name="description" content="{{articolo.articolo|slice(0,300)|raw}}"/>
 <link rel="canonical" href="{{ url('home') }}{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="{{articolo.titolo}} &copy;" />
-<meta property="og:description" content="{{articolo.articolo|slice(0,300)|raw}}" />
+<meta property="og:description" content="{{articolo.articolo|striptags}}" />
+<meta property="og:image" content="{{ asset('uploads/image/' ~ articolo.image) }}" />
 <meta property="og:url" content="{{ url('home') }}{{ path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params')) }}" />
 {{parent()}}
 {% endblock %}
@@ -131,7 +131,7 @@
 															 {% endfor %}
 	 													 </ul>
 														 <ul>
-	 													<a class="primary-btn pbtn-2 text-uppercase mx-auto" id="load-more">Leggi di più</a>
+	 													<a class="primary-btn pbtn-2 text-uppercase mx-auto" id="load-more">Leggi di pi첫</a>
 	 												</ul>
                         </div>
                     </div>
