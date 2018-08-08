@@ -47,22 +47,22 @@
 			<section class="travel-area section-gap" id="news">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-50 col-lg-8">
+						<div class="menu-content pb-10 col-lg-8">
 							<div class="title text-center">
 								<h1 class="mb-10">Ultimi Articoli</h1>
 								<p>Ultimi articoli inerenti a tutte le categorie presenti sul sito</p>
 							</div>
 						</div>
-						{% for p in pubblicita %}
-							{% if p.active == 0 %}
-								{% for pos in p.posizione %}
-									{% if pos == "home" %}{{p.script|raw}}{% endif %}
-								{% endfor %}
-							{% endif %}
-						{% endfor %}
+							{% for p in pubblicita %}
+								{% if p.active == 0 %}
+									{% for pos in p.posizione %}
+										{% if pos == "home" %}{{p.script|raw}}{% endif %}
+									{% endfor %}
+								{% endif %}
+							{% endfor %}
 					</div>
 					<div class="row">
-						<div class="col-lg-12 travel" id="articoli">
+						<div class="col-lg-12 pt-20 travel" id="articoli">
 							{% for a in articoli %}
 							<div class="col-md-6 single-travel media">
 								<div class="col-md-6">
@@ -99,12 +99,19 @@
 			<section class="category-area section-gap" id="categorie">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-50 col-lg-8">
+						<div class="menu-content pb-10 col-lg-8">
 							<div class="title text-center">
 								<h1 class="mb-10">Categorie</h1>
 								<p>Puoi trovare tantissimi articoli inerenti alle categorie che più ti incuriosiscono</p>
 							</div>
 						</div>
+							{% for p in pubblicita %}
+								{% if p.active == 0 %}
+									{% for pos in p.posizione %}
+										{% if pos == "homecat" %}{{p.script|raw}}{% endif %}
+									{% endfor %}
+								{% endif %}
+							{% endfor %}
 					</div>
 					<div class="active-cat-carusel">
 						{% for c in categoria %}

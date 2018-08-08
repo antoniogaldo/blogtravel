@@ -20,8 +20,15 @@ class PubblicitaType extends AbstractType
                   'label' => 'posizione',
                   'choices' => array(
                     'home' =>'home',
-                    'categoria' =>'categoria',
-                    'articolo' =>'articolo',
+                    'homecat' =>'homecat',
+                    'categoriafull' =>'categoriafull',
+                    'categoriaside' =>'categoriaside',
+                    'categoriaside1' =>'categoriaside1',
+                    'categoriaside2' =>'categoriaside2',
+                    'articolofull' =>'articolofull',
+                    'articoloside' =>'articoloside',
+                    'articoloside1' =>'articoloside1',
+                    'articoloside2' =>'articoloside2',
             )))
             ->add('active', ChoiceType::class, array(
                   'label' => 'active',

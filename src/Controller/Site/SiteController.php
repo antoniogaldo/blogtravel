@@ -53,10 +53,12 @@ class SiteController extends Controller
    $entityManager = $this->getDoctrine()->getManager();
    $categoria = $entityManager->getRepository(Articolicategoria::class)->find(array('id' => $id));
    $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT);
+   $pubblicita = $entityManager->getRepository(Pubblicita::class)->findAll();
    return $this->render(
      'site/categoriasite.html.twig',array(
        'categoria' => $categoria,
        'articoli' => $articoli,
+       'pubblicita' => $pubblicita
      ));
  }
 
@@ -68,6 +70,7 @@ class SiteController extends Controller
    $entityManager = $this->getDoctrine()->getManager();
    $articolo = $entityManager->getRepository(Articoli::class)->find($id);
    $articoli = $entityManager->getRepository(Articoli::class)->findByArticolo(self::DEFAULT_LIMIT);
+   $pubblicita = $entityManager->getRepository(Pubblicita::class)->findAll();
    $commenti = new Commenti();
    $commenti->setArticoli($articolo);
    $form = $this->createForm(CommentiType::class, $commenti);
@@ -86,6 +89,7 @@ class SiteController extends Controller
      'site/articolisite.html.twig',array(
        'articoli' => $articoli,
        'articolo' => $articolo,
+       'pubblicita' => $pubblicita,
         'form' => $form->createView(),
      ));
  }

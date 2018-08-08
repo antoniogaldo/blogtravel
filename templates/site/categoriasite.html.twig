@@ -25,13 +25,18 @@
 							 </div>
 					 </section>
 					 <!-- End top-section Area -->
-
-
 	 <!-- Start post Area -->
 	 <div class="post-wrapper pt-30">
 			 <!-- Start post Area -->
 			 <section class="post-area">
 					 <div class="container">
+						 {% for p in pubblicita %}
+							{% if p.active == 0 %}
+								{% for pos in p.posizione %}
+									{% if pos == "categoriafull" %}{{p.script|raw}}{% endif %}
+								{% endfor %}
+							{% endif %}
+						 {% endfor %}
 						 <hr>
 							 <div class="row justify-content-center d-flex">
 									 <div class="col-lg-8" id="categoria">
@@ -62,7 +67,20 @@
 													 {% endfor %}
 									 </div>
 									 <div class="col-lg-4 sidebar-area">
-
+										 {% for p in pubblicita %}
+											{% if p.active == 0 %}
+												{% for pos in p.posizione %}
+													{% if pos == "categoriaside" %}{{p.script|raw}}{% endif %}
+												{% endfor %}
+											{% endif %}
+										 {% endfor %}
+										 {% for p in pubblicita %}
+											{% if p.active == 0 %}
+												{% for pos in p.posizione %}
+													{% if pos == "categoriaside1" %}{{p.script|raw}}{% endif %}
+												{% endfor %}
+											{% endif %}
+										 {% endfor %}
 											 <div class="single_widget cat_widget">
 													 <h4 class="text-uppercase pb-20">Nuovi articoli</h4>
 													 <ul id="articoli">
@@ -74,6 +92,13 @@
 													<a class="primary-btn pbtn-2 text-uppercase mx-auto" id="load-more">Leggi di più</a>
 												</ul>
 											 </div>
+											 {% for p in pubblicita %}
+												{% if p.active == 0 %}
+													{% for pos in p.posizione %}
+														{% if pos == "categoriaside2" %}{{p.script|raw}}{% endif %}
+													{% endfor %}
+												{% endif %}
+											 {% endfor %}
 									 </div>
 							 </div>
 					 </div>

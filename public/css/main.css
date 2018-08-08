@@ -1712,7 +1712,7 @@ p.col-lg-8.col-sm-12.footer-text{
     color: #222;
 }.top-wrapper
 {
-    margin-top: 40px;margin-bottom: 40px;
+    margin-top: 40px;
 }.top-wrapper h2
 {
     font-size: 20px;font-weight: 600;text-align: left;
@@ -1737,7 +1737,7 @@ p.col-lg-8.col-sm-12.footer-text{
     text-align: right;
 }.tags ul
 {
-    margin-top: 30px;margin-bottom: 30px;
+    margin-top: 10px;margin-bottom: 10px;
 }.tags ul li
 {display: inline-block;margin-bottom: 15px;border: 1px solid #eee;
     background: #f9f9ff;
