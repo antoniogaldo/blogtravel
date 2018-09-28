@@ -15,11 +15,11 @@
 							 <div class="container">
 									 <div class="row justify-content-between align-items-center d-flex">
 											 <div class="col-lg-12 top-left">
-													 <h1 class="text-white mb-20">{{articolo.titolo|capitalize}}</h1>
+													 <h1 class="text-white mb-20">{{articolo.titolo}}</h1>
 													 <ul>
 															 <li><a href="{{path('home')}}">Home</a><span class="lnr lnr-arrow-right"></span></li>
 															 <li><a href="{{ path('categoriasite', { id: articolo.categoria.id }) }}">{{articolo.categoria.nome|capitalize}}</a><span class="lnr lnr-arrow-right"></span></li>
-															 <li class="text-white">{{articolo.titolo|capitalize}}</li>
+															 <li class="text-white">{{articolo.titolo}}</li>
 													 </ul>
 											 </div>
 									 </div>

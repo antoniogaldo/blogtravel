@@ -70,6 +70,11 @@ class User implements UserInterface
          $this->isActive = true;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     // other properties and methods
 
     public function getEmail()
